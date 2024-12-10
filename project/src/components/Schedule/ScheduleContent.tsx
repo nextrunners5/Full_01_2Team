@@ -13,7 +13,6 @@ const ScheduleContent: React.FC = () => {
 const styles = {
   content: {
     padding: '20px',
-    flex: 1,
   },
 };
 
