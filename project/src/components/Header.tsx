@@ -20,7 +20,7 @@ const Header: React.FC = () => {
     </header>
   );
 };
-
+ 
 const headerStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
