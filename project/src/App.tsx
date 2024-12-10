@@ -10,6 +10,7 @@ import SchedulePage from "./pages/SchedulePage";
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   const mainHomeNavigate = () => {
     navigate("/MainHomePage");
   };
@@ -43,6 +44,7 @@ const HomePage: React.FC = () => {
       </div>
     </div>
   );
+
 };
 
 const SchedulePageRouter: React.FC = () => {
