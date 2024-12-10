@@ -20,3 +20,4 @@ const ScheduleList: React.FC<ScheduleListProps> = ({ schedules }) => {
 };
 
 export default ScheduleList;
+

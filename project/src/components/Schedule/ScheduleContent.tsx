@@ -18,3 +18,4 @@ const styles = {
 };
 
 export default ScheduleContent;
+

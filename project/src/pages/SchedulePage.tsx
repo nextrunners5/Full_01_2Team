@@ -20,3 +20,4 @@ const styles = {
 };
 
 export default SchedulePage;
+
