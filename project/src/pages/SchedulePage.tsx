@@ -1,10 +1,16 @@
-// src/components/SchedulePage.tsx
-import React from "react";
+// 일정 페이지
+import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import ScheduleContent from "../components/Schedule/ScheduleContent";
 import Header from "../components/Header";
+import Calendar from "../components/Schedule/Calendar";
 
 const SchedulePage: React.FC = () => {
+  const [selectedEvent, setSelectedEvent] = useState<{ title: string; date: string; description?: string } | null>(null);
+
+  const handleEventClick = (event: { title: string; date: string; description?: string }) => {
+    setSelectedEvent(event);
+  };
   return (
     <div
       style={{
@@ -17,7 +23,13 @@ const SchedulePage: React.FC = () => {
       <div style={styles.mainContent}>
         <Sidebar />
         <div style={styles.centerContainer}>
-          <ScheduleContent />
+        <Calendar userId="user123" onEventClick={handleEventClick} />
+        {selectedEvent && (
+        <ScheduleContent 
+          title={selectedEvent.title} 
+          date={selectedEvent.date}  
+        />
+      )}
         </div>
         <div style={styles.rightSidebar}>
           <p>오른쪽 사이드바 내용</p>
