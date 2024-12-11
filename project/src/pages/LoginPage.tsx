@@ -1,6 +1,6 @@
 import React from "react";
 
-const Login: React.FC = () => {
+const LoginPage: React.FC = () => {
   return (
     <div>
       <h2>로그인 페이지입니다</h2>
@@ -9,4 +9,4 @@ const Login: React.FC = () => {
   );
 }
 
-export default Login;
+export default LoginPage;

@@ -11,6 +11,7 @@ import SchedulePage from "./pages/SchedulePage";
 import MainHomePage from "./pages/MainHomePage";
 import ProjectPage from "./pages/ProjectPage";
 import UserPage from "./pages/UserPage";
+import LoginPage from "./pages/LoginPage";
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ const SchedulePageRouter: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/LoginPage" element={<LoginPage />} />
         <Route path="/MainHomePage" element={<MainHomePage />} />
         <Route path="/SchedulePage" element={<SchedulePage />} />
         <Route path="/ProjectPage" element={<ProjectPage />} />
