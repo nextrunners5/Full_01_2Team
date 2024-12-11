@@ -15,6 +15,9 @@ import UserPage from "./pages/UserPage";
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
+  const LoginPageNavigate = () => {
+    navigate("/LoginPage");
+  };
   const mainHomeNavigate = () => {
     navigate("/MainHomePage");
   };
@@ -42,6 +45,7 @@ const HomePage: React.FC = () => {
       <div style={ButtonExample.buttonex}>
         <h1>임시 버튼들</h1>
         <button onClick={mainHomeNavigate}>메인 페이지로 이동</button>
+        <button onClick={LoginPageNavigate}>로그인 페이지로 이동</button>
         <button onClick={scheduleNavigate}>일정 페이지로 이동</button>
         <button onClick={projectNavigate}>프로젝트 페이지로 이동</button>
         <button onClick={userNavigate}>마이페이지 페이지로 이동</button>
