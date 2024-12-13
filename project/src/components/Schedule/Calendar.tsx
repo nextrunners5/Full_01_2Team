@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import ko from '@fullcalendar/core/locales/ko';
-import './Calendar.css';
+import './css/Calendar.css';
 
 interface Event {
   title: string;

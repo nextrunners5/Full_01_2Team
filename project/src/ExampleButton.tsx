@@ -1,17 +1,11 @@
-// 이 임시버튼페이지는 전체적인 구성 끝나면 지우겠습니다~
-
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import SchedulePage from "./pages/SchedulePage";
 import MainHomePage from "./pages/MainHomePage";
 import ProjectPage from "./pages/ProjectPage";
 import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
+import './ExampleButton.css'; // CSS 파일 import
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -32,18 +26,9 @@ const HomePage: React.FC = () => {
     navigate("/UserPage");
   };
 
-  const ButtonExample = {
-    buttonex: {
-      width: "auto",
-      padding: "20px",
-      backgroundColor: "#f0f0f0",
-      borderRight: "1px solid #ccc",
-    },
-  };
-
   return (
     <div>
-      <div style={ButtonExample.buttonex}>
+      <div className="button-container"> {/* 클래스 이름 수정 */}
         <h1>임시 버튼들</h1>
         <button onClick={mainHomeNavigate}>메인 페이지로 이동</button>
         <button onClick={LoginPageNavigate}>로그인 페이지로 이동</button>

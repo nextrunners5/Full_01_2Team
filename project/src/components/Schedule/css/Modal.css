@@ -1,0 +1,121 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  cursor: move;
+}
+.modalbox {
+  margin: 20px 0 10px 15px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.title {
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.inputContainer1 {
+  display: flex;
+  margin-bottom: 10px;
+}
+.inputContainer2 {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.dateLabel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 10px;
+}
+.timeLabel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 10px;
+}
+.titleLabel {
+  margin-bottom: 3px;
+}
+.descriptionLabel {
+  margin-bottom: 3px;
+}
+
+.dateLabelTitle {
+  margin-bottom: 2px;
+}
+.timeLabelTitle {
+  margin-bottom: 2px;
+}
+
+.dateInput {
+  width: 95%;
+  margin-bottom: 5px;
+}
+
+.timeInput {
+  width: 95%;
+  margin-bottom: 5px;
+}
+
+.titleInput {
+  width: 95%;
+}
+
+.descriptionInput {
+  flex: 1;
+  height: 100px;
+  width: 95%;
+}
+
+.addButton {
+  margin: 10px 21px 20px 10px;
+  padding: 10px;
+  background-color: #6f42c1;
+  height: 35px;
+  width: 50px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cancelButton {
+  padding: 10px;
+  color: rgb(9, 9, 9);
+  background-color: #d3c8e6;
+  height: 35px;
+  width: 50px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

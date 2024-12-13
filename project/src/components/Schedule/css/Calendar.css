@@ -1,0 +1,76 @@
+/* 헤더 배경색 */
+.fc-toolbar {
+  background-color: #f0f0f0; 
+}
+
+/* 헤더 텍스트 색상 */
+.fc-toolbar h2 {
+  color: #333; 
+}
+
+/* 폰트 변경 */
+.fc {
+  font-family: 'Arial, sans-serif'; 
+}
+
+ /* 날짜 셀 배경색 */
+.fc-day {
+  background-color: #ffffff;
+}
+
+ /* 날짜 셀 호버 색상 */
+.fc-day:hover {
+  background-color: #6e42c169;
+}
+/* 달력 너비 */
+.fc {
+  width: 100%;
+}
+/* 왼쪽, 오른쪽 버튼 */
+.fc-prev-button.fc-button.fc-button-primary{
+  border: none;
+  background-color: #6F42C1;
+}
+.fc-next-button.fc-button.fc-button-primary{
+  border: none;
+  background-color: #6F42C1;
+}
+/* 왼쪽,오른쪽 호버 버튼 */
+.fc-prev-button.fc-button.fc-button-primary:hover{
+  border: none;
+  background-color: #6e42c169;
+}
+.fc-next-button.fc-button.fc-button-primary:hover{
+  border: none;
+  background-color: #6e42c169;
+}
+/* 오늘 버튼 */
+.fc-today-button.fc-button.fc-button-primary{
+  border: none;
+  background-color: #6F42C1;
+}
+/* 월, 주, 일 버튼 */
+.fc-dayGridMonth-button.fc-button.fc-button-primary{
+  border: none;
+  background-color: #6F42C1;
+}
+.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active{
+  border: none;
+  background-color: #6e42c169;
+}
+.fc-timeGridWeek-button.fc-button.fc-button-primary{
+  border: none;
+  background-color: #6F42C1;
+}
+.fc-timeGridWeek-button.fc-button.fc-button-primary.fc-button-active{
+  border: none;
+  background-color: #6e42c169;
+}
+.fc-timeGridDay-button.fc-button.fc-button-primary{
+  border: none;
+  background-color: #6F42C1;
+}
+.fc-timeGridDay-button.fc-button.fc-button-primary.fc-button-active{
+  border: none;
+  background-color: #6e42c169;
+}

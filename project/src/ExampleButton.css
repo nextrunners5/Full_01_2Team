@@ -1,0 +1,16 @@
+.button-container {
+  width: auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-right: 1px solid #ccc;
+}
+
+.button-container h1 {
+  margin-bottom: 10px;
+}
+
+.button-container button {
+  margin-right: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
