@@ -1,7 +1,7 @@
 // 프로젝트 관리 페이지
 
 import {Link} from "react-router-dom";
-import "./ProjectPage.css";
+import "./css/ProjectPage.css";
 const ProjectPage = () => {
 
   // const navigate = useNavigate();
