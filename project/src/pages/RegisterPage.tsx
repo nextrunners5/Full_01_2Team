@@ -1,58 +1,58 @@
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // useNavigate 추가
 import { useState } from 'react'; // useState 추가
 import logo from '../assets/logo.png';
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const navigate = useNavigate(); // 페이지 이동을 위한 훅
-  const [errorMessage, setErrorMessage] = useState(''); // 에러 메시지 상태 추가
+  const [errorMessage, setErrorMessage] = useState(''); // 에러 메시지 상태
 
-  // 로그인 성공 핸들러
-  const handleLogin = () => {
+  // 회원가입 완료 핸들러
+  const handleRegister = () => {
     const username = (document.getElementById('username') as HTMLInputElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
     const password = (document.getElementById('password') as HTMLInputElement).value;
+    const confirmPassword = (document.getElementById('confirmPassword') as HTMLInputElement).value;
 
-    if (username === 'admin' && password === '1234') {
+    if (username && email && password && password === confirmPassword) {
       setErrorMessage(''); // 에러 메시지 초기화
-      alert('로그인 성공!');
-      navigate('/'); // 메인 페이지로 이동
+      alert('회원가입이 완료되었습니다.');
+      navigate('/login'); // 로그인 페이지로 이동
     } else {
-      setErrorMessage('아이디 또는 비밀번호가 일치하지 않습니다.'); // 에러 메시지 설정
+      setErrorMessage('입력값을 확인해주세요. 비밀번호가 일치하지 않습니다.');
     }
   };
 
   const handleGoogleSuccess = (credentialResponse: { credential?: string }) => {
-    console.log('Google Login Success:', credentialResponse);
-    setErrorMessage(''); // 에러 메시지 초기화
-    alert('Google 로그인 성공!');
-    navigate('/'); // 메인 페이지로 이동
+    console.log('Google Signup Success:', credentialResponse);
+    alert('Google 회원가입 성공!');
+    navigate('/login'); // Google 회원가입 완료 후 로그인 페이지로 이동
   };
 
   const handleGoogleFailure = () => {
-    console.log('Google Login Failed');
-    setErrorMessage('Google 로그인 실패. 다시 시도해주세요.');
+    console.log('Google Signup Failed');
+    setErrorMessage('Google 회원가입에 실패했습니다.');
   };
 
   return (
     <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
       <div style={containerStyle}>
         <img src={logo} alt="logo" style={logoStyle} />
-        <h2>idea Daily에 오신 것을 환영합니다</h2>
-        <p>프로젝트 관리를 더 쉽고 효율적으로 시작하기</p>
+        <h2>회원가입</h2>
         <div style={formContainerStyle}>
           <input id="username" type="text" placeholder="아이디" style={inputStyle} />
+          <input id="email" type="email" placeholder="이메일" style={inputStyle} />
           <input id="password" type="password" placeholder="비밀번호" style={inputStyle} />
+          <input id="confirmPassword" type="password" placeholder="비밀번호 확인" style={inputStyle} />
+          <input id="name" type="text" placeholder="이름" style={inputStyle} />
           {errorMessage && <p style={errorStyle}>{errorMessage}</p>} {/* 에러 메시지 표시 */}
-          <button style={buttonStyle} onClick={handleLogin}>
-            로그인
+          <button style={buttonStyle} onClick={handleRegister}>
+            가입하기
           </button>
-          <p style={dividerStyle}>또는 다음으로 계속</p>
+          <p style={dividerStyle}>또는 Google 계정으로 가입</p>
           <div style={{ margin: '0 auto' }}>
             <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleFailure} />
           </div>
-          <p style={{ marginTop: '20px' }}>
-            계정이 없으신가요? <Link to="/register" style={linkStyle}>회원가입</Link>
-          </p>
         </div>
       </div>
     </GoogleOAuthProvider>
@@ -113,9 +113,4 @@ const errorStyle = {
   marginBottom: '10px',
 };
 
-const linkStyle = {
-  color: '#7d3cf8',
-  textDecoration: 'none',
-};
-
-export default LoginPage;
+export default RegisterPage;
