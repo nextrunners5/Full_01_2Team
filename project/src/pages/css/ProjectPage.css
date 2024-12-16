@@ -1,0 +1,290 @@
+.purple-btn{
+  position: absolute;
+  width: 234px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0px;
+  gap: 0px 0px;
+  flex-wrap: wrap;
+  align-content: center;
+  border-radius: 6px;
+  opacity: 1;
+  background: #6F42C1;
+}
+
+.purple-btn h3{
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+/* 프로젝트 생성 페이지 */
+.projectCreateContainer {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  opacity: 1;
+  background: #F9FAFB;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.projectCreateForm{
+  width: 704px;
+  height: 835px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 30px;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  border-radius: 8px;
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1),0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.createNewProject{
+  height: 53px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0px 20px 0px;
+  gap: 0px 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  z-index: 0;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  border-width: 0px 0px 1px 0px;
+  border-style: solid;
+  border-color: #E5E7EB;
+}
+
+.createNewProject h2{
+  height: 32px;
+  z-index: 0;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0);
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0px;
+  color: #111827;
+}
+
+.createDropContainer{
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0);
+  gap: 50px;
+}
+
+.h3{
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #374151;
+  margin: 0 0 5px 0;
+}
+
+.projectImportance{
+  display: flex;
+  flex-direction: column;
+  width: 208px;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0);
+}
+
+.projectImportance select{
+  opacity: 1;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+}
+
+
+select{
+  width: 208px;
+  height: 42px;
+  text-align: center;
+}
+
+.projectStatus{
+  display: flex;
+  flex-direction: column;
+  width: 208px;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0);
+}
+
+.projectStatus select{
+  opacity: 1;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+}
+
+.projectType{
+  display: flex;
+  flex-direction: column;
+  width: 208px;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0);
+}
+
+.projectType select{
+  opacity: 1;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+}
+
+.projectTitle{
+  height: 66px;
+  z-index: 2;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0);
+}
+
+.projectTitle input{
+width: 100%;
+height: 42px;
+display: flex;
+flex-direction: column;
+padding: 8px 12px;
+gap: 0px 10px;
+flex-wrap: wrap;
+align-content: flex-start;
+opacity: 1;
+background: #FFFFFF;
+box-sizing: border-box;
+border: 1px solid #D1D5DB;
+
+}
+
+.projectDate{
+  height: 66px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectStartDate{
+  width: 320px;
+  height: 66px;
+}
+
+.projectStartDate input{
+width: 320px;
+height: 42px;
+display: flex;
+flex-direction: column;
+padding: 8px 12px;
+gap: 0px 10px;
+flex-wrap: wrap;
+align-content: flex-start;
+justify-content: center;
+text-align: center;
+opacity: 1;
+background: #FFFFFF;
+box-sizing: border-box;
+border: 1px solid #D1D5DB;
+}
+
+.projectEndDate{
+  width: 320px;
+  height: 66px;
+}
+
+.projectEndDate input{
+width: 320px;
+height: 42px;
+display: flex;
+flex-direction: column;
+padding: 8px 12px;
+gap: 0px 10px;
+flex-wrap: wrap;
+align-content: flex-start;
+justify-content: center;
+text-align: center;
+opacity: 1;
+background: #FFFFFF;
+box-sizing: border-box;
+border: 1px solid #D1D5DB;
+}
+
+.projectManager{
+  height: 66px;
+  z-index: 4;
+}
+
+.projectManager input{
+  width: 100%;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  gap: 0px 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  opacity: 1;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+}
+
+.projectDetail{
+  height: 291px;
+  z-index: 5;
+}
+
+.projectDetail textarea{
+  width: 100%;
+  height: 267px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  gap: 0px 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  opacity: 1;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+}
+
+.createBtn button{
+  width: 100%;
+  display: flex;
+  padding: 12px 16px;
+  gap: 0px 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  z-index: 0;
+  border-radius: 4px;
+  border: 0;
+  opacity: 1;
+  background: #6F42C1;
+  font-family: Roboto;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+

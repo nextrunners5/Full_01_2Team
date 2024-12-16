@@ -1,15 +1,19 @@
 // 프로젝트 관리 페이지
 
-import React from "react";
-import Header from "../components/Header";
+import {Link} from "react-router-dom";
+import "./ProjectPage.css";
+const ProjectPage = () => {
 
-const ProjectPage: React.FC = () => {
+  // const navigate = useNavigate();
+
   return (
-    <div>
-  <Header onLogoClick={function (): void {
-        throw new Error("Function not implemented.");
-      } } />
-      <h2>프로젝트 페이지입니다!</h2>
+    <div className = "project-create-btn">
+
+      <Link to={'/ProjectDetails'}>
+        <div className="purple-btn">
+          <h3>프로젝트 추가하기</h3>
+        </div>
+      </Link>
     </div>
   )
 }
