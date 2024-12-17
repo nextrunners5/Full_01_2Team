@@ -9,7 +9,7 @@ const ProjectPage = () => {
   return (
     <div className = "project-create-btn">
 
-      <Link to={'/ProjectDetails'}>
+      <Link to={'./ProjectDetails.tsx'}>
         <div className="purple-btn">
           <h3>프로젝트 추가하기</h3>
         </div>

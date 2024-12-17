@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "./ProjectPage.css";
+import "./css/ProjectPage.css";
 import axios from 'axios';
 
 interface Common{
