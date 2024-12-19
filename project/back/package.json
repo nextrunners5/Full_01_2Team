@@ -1,13 +1,33 @@
 {
-  "name": "back",
-  "version": "1.0.0",
-  "main": "server.js",
+  "name": "backend",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "lint": "eslint ."
   },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.8.4",
+    "mysql2": "^3.11.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.4.2",
+    "typescript": "~5.6.2"
+  },
+  "main": "server.js",
+  "description": "- `main` - 배포 브랜치 - `dev` - 개발 브랜치 - `feature/기능_명` - PR 전 전원 승인 필수",
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "ISC"
 }
+
