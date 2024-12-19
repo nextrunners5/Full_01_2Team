@@ -1,3 +1,4 @@
+import React from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom'; // useNavigate 추가
 import { useState } from 'react'; // useState 추가

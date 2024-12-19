@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBell, FaUser } from "react-icons/fa";
-import logo from '../assets/LOGO.png';
+import logo from '../assets/logo.png';
 import './css/Header.css';
 
 interface HeaderProps {

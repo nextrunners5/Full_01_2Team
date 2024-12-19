@@ -1,4 +1,3 @@
-// 이미지 파일 형식 선언
 declare module '*.png' {
   const value: string;
   export default value;
@@ -15,6 +14,6 @@ declare module '*.jpeg' {
 }
 
 declare module '*.svg' {
-  const value: string;
+  const value: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   export default value;
 }

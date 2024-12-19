@@ -1,5 +1,6 @@
 // 프로젝트 관리 페이지
 
+import React from 'react';
 import {Link} from "react-router-dom";
 import "./css/ProjectPage.css";
 const ProjectPage = () => {

@@ -1,28 +1,26 @@
 // server.js
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const dotenv = require('dotenv');
-const mysql = require('mysql2');
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import { config } from 'dotenv';
+import { createPool } from 'mysql2';
 
 // 환경 변수 설정
-dotenv.config();
+config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // MySQL 연결 설정
-//
 const dbConfig = {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: process.env.DB_HOST || "127.0.0.1",
+    user: process.env.DB_USER ||  "root",
+    password: process.env.DB_PASSWORD || "1234",
+    database: process.env.DB_NAME || "d-db",
 };
 
 // MySQL2 연결 풀 생성
-const pool = mysql.createPool(dbConfig);
+const pool = createPool(dbConfig);
 
 // MySQL 연결 테스트
 pool.getConnection((err, connection) => {
@@ -37,9 +35,9 @@ pool.getConnection((err, connection) => {
 
 // 미들웨어 설정
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan('dev'));
+app.use(express.json()); // JSON 요청 파싱
+app.use(express.urlencoded({ extended: true })); // URL-encoded 요청 파싱
+app.use(morgan('dev')); // HTTP 요청 로깅
 
 // 기본 라우트
 app.get('/', (req, res) => {
@@ -61,5 +59,5 @@ app.get('/api/test', (req, res) => {
 
 // 서버 실행
 app.listen(PORT, () => {
-    console.log(`✅ 서버가 http://localhost:${PORT} 에서 실행 중입니다.`);
+    console.log(` 서버가 http://localhost:${PORT} 에서 실행 중입니다.`);
 });
