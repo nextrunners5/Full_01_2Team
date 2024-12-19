@@ -5,6 +5,7 @@ import ProjectPage from "./pages/ProjectPage";
 import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
 import ProjectDetails from "./pages/ProjectDetails";
+import RegisterPage from "./pages/RegisterPage";
 import './ExampleButton.css'; // CSS 파일 import
 
 const HomePage: React.FC = () => {
@@ -12,6 +13,9 @@ const HomePage: React.FC = () => {
 
   const LoginPageNavigate = () => {
     navigate("/LoginPage");
+  };
+  const RegisterPageNavigate = () => {
+    navigate("/RegisterPage");
   };
   const mainHomeNavigate = () => {
     navigate("/MainHomePage");
@@ -35,6 +39,7 @@ const HomePage: React.FC = () => {
         <h1>임시 버튼들</h1>
         <button onClick={mainHomeNavigate}>메인 페이지로 이동</button>
         <button onClick={LoginPageNavigate}>로그인 페이지로 이동</button>
+        <button onClick={RegisterPageNavigate}>회원가입 페이지로 이동</button>
         <button onClick={scheduleNavigate}>일정 페이지로 이동</button>
         <button onClick={projectNavigate}>프로젝트 페이지로 이동</button>
         <button onClick={userNavigate}>마이페이지 페이지로 이동</button>
@@ -50,6 +55,7 @@ const SchedulePageRouter: React.FC = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/LoginPage" element={<LoginPage />} />
+        <Route path="/RegisterPage" element={<RegisterPage />} />
         <Route path="/SchedulePage" element={<SchedulePage />} />
         <Route path="/ProjectPage" element={<ProjectPage />} />
         <Route path="/UserPage" element={<UserPage />} />
