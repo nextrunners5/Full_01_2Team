@@ -1,4 +1,3 @@
-// server.js
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -9,20 +8,20 @@ import { createPool } from 'mysql2';
 config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 // MySQL 연결 설정
 const dbConfig = {
-    host: process.env.DB_HOST || "127.0.0.1",
-    user: process.env.DB_USER ||  "root",
-    password: process.env.DB_PASSWORD || "1234",
-    database: process.env.DB_NAME || "my_database",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 };
 
 // MySQL 연결 풀 생성
 const pool = createPool(dbConfig);
 
-// MySQL 연결 테스트
+// MySQL 연결
 pool.getConnection((err, connection) => {
     if (err) {
         console.error(' MySQL 데이터베이스 연결 실패:', err);
@@ -35,27 +34,53 @@ pool.getConnection((err, connection) => {
 
 // 미들웨어 설정
 app.use(cors());
-app.use(express.json()); // JSON 요청 파싱
-app.use(express.urlencoded({ extended: true })); // URL-encoded 요청 파싱
-app.use(morgan('dev')); // HTTP 요청 로깅
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 
 // 기본 라우트
 app.get('/', (req, res) => {
     res.send('서버가 정상적으로 실행 중입니다!');
 });
 
-// API 예제 라우트 (MySQL 쿼리)
-app.get('/api/test', (req, res) => {
-    const query = 'SELECT NOW() AS currentTime';
-    pool.query(query, (error, results) => {
-        if (error) {
-            console.error('쿼리 에러:', error);
-            res.status(500).json({ success: false, message: '서버 에러 발생' });
-        } else {
-            res.json({ success: true, data: results });
-        }
-    });
-});
+// // 일정 저장 API
+// app.post('/api/Schedules', (req, res) => {
+//     const { startDate, endDate, startTime, endTime, title, description } = req.body;
+
+//     const query = `
+//         INSERT INTO Schedules (
+//             schedule_startDate,
+//             schedule_endDate,
+//             schedule_startTime,
+//             schedule_endTime,
+//             schedule_title,
+//             schedule_details
+//         ) VALUES (?, ?, ?, ?, ?, ?)
+//     `;
+
+//     pool.query(query, [startDate, endDate, startTime, endTime, title, description], (error, results) => {
+//         if (error) {
+//             console.error("데이터 삽입 오류:", error);
+//             res.status(500).json({ success: false, message: "서버 오류", error: error.message });
+//         } else {
+//             res.status(201).json({ success: true, message: "일정이 저장되었습니다.", data: results });
+//         }
+//     });
+// });
+
+// // 일정 데이터 조회 API
+// app.get('/api/Schedules', (req, res) => {
+//     const query = 'SELECT * FROM Schedules';
+
+//     pool.query(query, (error, results) => {
+//         if (error) {
+//             console.error('데이터 조회 오류:', error);
+//             res.status(500).json({ success: false, message: '서버 오류' });
+//         } else {
+//             res.status(200).json({ success: true, data: results });
+//         }
+//     });
+// });
 
 // 서버 실행
 app.listen(PORT, () => {
