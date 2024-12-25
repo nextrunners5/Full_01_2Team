@@ -17,13 +17,16 @@
 .fc-day {
   background-color: #ffffff;
 }
-
- /* 날짜 셀 호버 색상 */
-
 /* 달력 너비 */
 .fc {
   width: 100%;
 }
+/* 전체 bar 색상 */
+.fc-event.fc-event-start.fc-event-end.fc-event-future.fc-daygrid-event.fc-daygrid-block-event.fc-h-event{
+  background-color: #6F42C1;
+  border: none;
+}
+
 /* 왼쪽, 오른쪽 버튼 */
 .fc-prev-button.fc-button.fc-button-primary{
   border: none;
@@ -79,4 +82,7 @@
 .fc-event.fc-event-past.fc-daygrid-event.fc-daygrid-block-event.fc-h-event{
   background-color: #6F42C1;
   border: none;
+}
+.fc-event-title-container{
+  cursor: pointer;
 }

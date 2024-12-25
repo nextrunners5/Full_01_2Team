@@ -140,6 +140,33 @@ app.delete('/api/Schedules/:id', (req, res) => {
     });
 });
 
+// 서버에서 일주일의 일정 조회
+app.get('/api/Schedules/upcoming', (req, res) => {
+    const query = `
+      SELECT 
+        schedule_id AS id,
+        schedule_title AS title,
+        schedule_startDate AS startDate,
+        schedule_endDate AS endDate,
+        schedule_startTime AS startTime,
+        schedule_endTime AS endTime,
+        schedule_details AS description
+      FROM Schedules
+      WHERE schedule_startDate BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+      ORDER BY schedule_startDate ASC;
+    `;
+  
+    pool.query(query, (error, results) => {
+      if (error) {
+        console.error('일주일간의 일정 조회 오류:', error);
+        res.status(500).json({ success: false, message: '서버 오류' });
+      } else {
+        res.status(200).json({ success: true, data: results });
+      }
+    });
+  });
+  
+
 // 서버 실행
 app.listen(PORT, () => {
     console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다.`);

@@ -109,7 +109,8 @@ const Calendar = forwardRef(({ onEventClick }: CalendarProps, ref) => {
         right: 'dayGridMonth,timeGridWeek,timeGridDay',
       }}
       dayMaxEvents={3}
-      dayMaxEventRows={true}
+      dayMaxEventRows={1}
+      eventColor="#6F42C1"
       eventClick={handleEventClick}
     />
   );

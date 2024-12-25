@@ -62,3 +62,15 @@ export const deleteSchedule = async (id: string) => {
     throw new Error(error.response?.data?.message || "일정 삭제 중 오류가 발생했습니다.");
   }
 };
+
+/* 일주일 일정 가져오기 (GET) */
+export const fetchUpcomingSchedules = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/upcoming`);
+    console.log("일주일간의 일정 조회 성공:", response.data);
+    return response.data.data;
+  } catch (error: any) {
+    console.error("일주일간의 일정 조회 실패:", error.response?.data || error.message);
+    throw new Error("일주일간의 일정을 불러오는 중 오류가 발생했습니다.");
+  }
+};

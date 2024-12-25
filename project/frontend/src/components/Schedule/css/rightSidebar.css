@@ -1,10 +1,13 @@
-
 /* 사이드바 컨테이너 */
 .rightSidebar {
   width: 250px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: auto;
+  margin-top: 2px;
   background-color: #f0f0f0;
-  padding: 10px;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 6px -1px rgba(0,0,0,0.75);
+  overflow-y: auto;
 }
 
 /* 날짜 컨테이너 */
@@ -13,6 +16,18 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: auto;
+  height: 50px;
+  padding: 0 10px;
+  border-radius: 5px;
+  background-color: #9c88ff;
+  box-shadow: 1px 1px 6px -1px rgba(0,0,0,0.75);
+}
+
+/* 오늘의 날짜 */
+.dateContainer p {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
 }
 
 /* +버튼 스타일 */
@@ -23,4 +38,52 @@
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 카드 컨테이너 */
+.cardContainer {
+  margin-top: 10px;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+/* 카드 스타일 */
+.card {
+  background-color: #9c88ff;
+  color: white; 
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 1px 1px 6px -1px rgba(0,0,0,0.75);
+}
+
+/* 카드 헤더 (일정, 시간) */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+/* 카드 본문 (내용) */
+.cardBody {
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* 카드 푸터 (설명) */
+.cardFooter {
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+/* 일정 없음 메시지 */
+.noSchedule {
+  text-align: center;
+  margin-top: 20px;
+  color: gray;
+  font-size: 14px;
 }
