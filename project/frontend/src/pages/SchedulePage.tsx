@@ -106,12 +106,9 @@ const SchedulePage: React.FC = () => {
 
   return (
     <div className="container">
-      {/* 사이드바 */}
       <div className={`sidebar ${isSidebarVisible ? '' : 'hidden'}`}>
         <Sidebar />
       </div>
-
-      {/* 메인 콘텐츠 */}
       <div className={`mainContent ${isSidebarVisible ? '' : 'expanded'}`}>
         <Header onLogoClick={handleLogoClick} />
         <div className="centerContainer">
@@ -123,7 +120,6 @@ const SchedulePage: React.FC = () => {
               />
             </div>
           </div>
-          {/* RightSidebar 분리 */}
           <RightSidebar onAddButtonClick={handleAddButtonClick} />
         </div>
       </div>

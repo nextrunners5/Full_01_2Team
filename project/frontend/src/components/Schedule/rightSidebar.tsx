@@ -1,7 +1,7 @@
 import './css/rightSidebar.css';
 
 interface RightSidebarProps {
-  onAddButtonClick: () => void; // 일정 추가 버튼 클릭 핸들러
+  onAddButtonClick: () => void;
 }
 
 const RightSidebar: React.FC<RightSidebarProps> = ({ onAddButtonClick }) => {
