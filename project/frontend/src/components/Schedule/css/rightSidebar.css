@@ -1,0 +1,27 @@
+/* rightSidebar.css */
+
+/* 사이드바 컨테이너 */
+.rightSidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 날짜 컨테이너 */
+.dateContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: auto;
+}
+
+/* +버튼 스타일 */
+.styled-button {
+  background-color: #6F42C1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}

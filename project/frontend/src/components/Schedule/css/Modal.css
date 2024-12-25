@@ -25,13 +25,6 @@
   margin: 20px 0 10px 15px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 15px;
-}
-
 .title {
   margin: 0;
 }
@@ -89,7 +82,7 @@
 }
 
 .titleInput {
-  width: 95%;
+  width: 94%;
 }
 
 .descriptionInput {
@@ -100,7 +93,6 @@
 
 .addButton {
   margin: 10px 21px 20px 10px;
-  padding: 10px;
   background-color: #6f42c1;
   height: 35px;
   width: 50px;
@@ -110,9 +102,18 @@
   cursor: pointer;
 }
 .cancelButton {
-  padding: 10px;
   color: rgb(9, 9, 9);
   background-color: #d3c8e6;
+  height: 35px;
+  width: 50px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.deleteButton{
+  margin-left: 200px;
+  color: rgb(255, 255, 255);
+  background-color: #f75d57;
   height: 35px;
   width: 50px;
   border: none;

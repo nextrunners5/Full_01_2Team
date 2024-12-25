@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./css/Modal.css";
 
+/* Props 인터페이스 */
 interface ScheduleModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -12,19 +13,28 @@ interface ScheduleModalProps {
     title: string;
     description: string;
   }) => void;
-  selectedEvent: {
+  onDelete?: () => void; // 삭제 핸들러 추가
+  selectedEvent?: {
+    startDate: string;
+    endDate: string;
+    startTime: string;
+    endTime: string;
     title: string;
-    date: string;
     description?: string;
   } | null;
+  mode: "add" | "edit";
 }
 
 const ScheduleModal: React.FC<ScheduleModalProps> = ({
   isOpen,
   onClose,
   onSave,
+  onDelete,
+  selectedEvent,
+  mode,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [startTime, setStartTime] = useState<string>("");
@@ -32,6 +42,26 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
+  /* 모드에 따른 초기값 설정 (수정 모드일 때만 초기화) */
+  useEffect(() => {
+    if (mode === "edit" && selectedEvent) {
+      setStartDate(new Date(selectedEvent.startDate));
+      setEndDate(new Date(selectedEvent.endDate));
+      setStartTime(selectedEvent.startTime);
+      setEndTime(selectedEvent.endTime);
+      setTitle(selectedEvent.title);
+      setDescription(selectedEvent.description || "");
+    } else if (mode === "add") {
+      setStartDate(null);
+      setEndDate(null);
+      setStartTime("");
+      setEndTime("");
+      setTitle("");
+      setDescription("");
+    }
+  }, [selectedEvent, mode]);
+
+  /* 모달 드래그 핸들러 */
   const handleMouseDown = (e: React.MouseEvent) => {
     const modal = modalRef.current;
     if (!modal) return;
@@ -53,13 +83,20 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
     document.addEventListener("mouseup", handleMouseUp);
   };
 
-  if (!isOpen) return null;
-
+  /* 저장 핸들러 */
   const handleSave = () => {
     onSave({ startDate, endDate, startTime, endTime, title, description });
     onClose();
   };
 
+  /* 삭제 핸들러 */
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete();
+    }
+  };
+
+  /* 날짜 변경 핸들러 */
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const date = e.target.value ? new Date(e.target.value) : null;
     setStartDate(date);
@@ -70,12 +107,14 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
     setEndDate(date);
   };
 
+  if (!isOpen) return null;
+
   return (
     <div className="overlay">
       <div ref={modalRef} className="modal" onMouseDown={handleMouseDown}>
         <div className="modalbox">
           <div className="header">
-            <h2 className="title">일정 추가</h2>
+            <h2 className="title">{mode === "edit" ? "일정 수정" : "일정 추가"}</h2>
             <button onClick={onClose} className="closeButton">
               X
             </button>
@@ -85,6 +124,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
               <h3 className="dateLabelTitle">시작 날짜</h3>
               <input
                 type="date"
+                value={startDate ? startDate.toISOString().split("T")[0] : ""}
                 onChange={handleStartDateChange}
                 className="dateInput"
               />
@@ -93,6 +133,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
               <h3 className="dateLabelTitle">종료 날짜</h3>
               <input
                 type="date"
+                value={endDate ? endDate.toISOString().split("T")[0] : ""}
                 onChange={handleEndDateChange}
                 className="dateInput"
               />
@@ -140,11 +181,16 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
         </div>
         <div className="buttonContainer">
           <button onClick={handleSave} className="addButton">
-            추가
+            {mode === "edit" ? "수정" : "추가"}
           </button>
           <button onClick={onClose} className="cancelButton">
             취소
           </button>
+          {mode === "edit" && (
+            <button onClick={handleDelete} className="deleteButton">
+              삭제
+            </button>
+          )}
         </div>
       </div>
     </div>

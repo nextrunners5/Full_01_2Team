@@ -1,25 +1,78 @@
-/* Sidebar.css */
+/* 전체 사이드바 스타일 */
 .sidebar {
   width: 200px;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-right: 1px solid #ccc;
+  background-color: #e3e3e3;
+  height: 100vh;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+/* 사이드바 숨김 */
+.sidebar.hidden {
+  width: 0;
+  transform: translateX(-100%);
+}
+
+/* 사이드바 메뉴 스타일 */
 .sidebar ul {
-  list-style-type: none; /* 기본 리스트 스타일 제거 */
-  padding: 0; /* 기본 패딩 제거 */
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
+/* 메뉴 항목 */
 .sidebar li {
-  margin: 10px 0; /* 리스트 아이템 간격 */
+  margin: 5px 0;
 }
 
-.sidebar a {
-  text-decoration: none; /* 링크의 기본 밑줄 제거 */
-  color: #333; /* 링크 색상 */
+/* 링크 스타일 */
+.sidebar li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.sidebar a:hover {
-  color: #007bff; /* 링크 호버 색상 */
+/* 아이콘 */
+.sidebar li a svg {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+/* 메뉴 호버 */
+.sidebar li a:hover {
+  background-color: #6e42c169;
+  color: #1e293b;
+}
+
+/* 선택된 메뉴 스타일 */
+.sidebar li.active {
+  background-color: #6F42C1;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.sidebar li.active a {
+  color: #ffffff;
+}
+
+/* 선택된 메뉴의 아이콘 스타일 */
+.sidebar li.active a svg {
+  color: #ffffff;
+}
+
+/* 반응형 사이드바 */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    z-index: 1000;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
 }
