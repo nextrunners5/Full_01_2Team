@@ -22,3 +22,6 @@ declare module '*.svg' {
   const src: string;
   export default src;
 }
+
+// react-slick의 Slider 타입 지정
+declare module 'react-slick';

@@ -1,0 +1,177 @@
+/* 전체 컨테이너 스타일 */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f9fafc;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 로고 스타일 */
+.login-logo {
+  width: 200px;
+}
+
+/* 헤더 텍스트 스타일 */
+.login-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.login-container p {
+  color: #666;
+  font-size: 14px;
+  margin: 0 0 25px 0;
+}
+
+/* 로그인 폼 스타일 */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* 입력 필드 스타일 */
+.login-form label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.login-form input:focus {
+  border-color: #7d3cf8;
+  outline: none;
+}
+
+/* 비밀번호 필드와 에러 메시지 정렬 */
+.input-with-error {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* 입력 필드와 에러 메시지 간격 */
+  margin-bottom: 15px;
+}
+
+/* 에러 메시지 스타일 */
+.input-with-error .error-message {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* 로그인 옵션 스타일 */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+  gap: 10px;
+}
+
+/* 체크박스와 텍스트를 한 줄로 정렬 */
+.login-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* 체크박스 스타일 */
+.login-options input[type="checkbox"] {
+  margin: 0;
+  cursor: pointer;
+}
+
+/* 비밀번호 링크 스타일 */
+.login-options a {
+  text-decoration: none;
+  color: #7d3cf8;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.login-options a:hover {
+  text-decoration: underline;
+}
+
+/* 로그인 버튼 스타일 */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background-color: #7d3cf8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #5a28c1;
+}
+
+/* 구분선 스타일 */
+.login-form .divider {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* 회원가입 링크 스타일 */
+.signup-text {
+  font-size: 14px;
+  text-align: center;
+}
+
+.signup-link {
+  color: #7d3cf8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* 로그인 박스 섀도우 */
+.login-form {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

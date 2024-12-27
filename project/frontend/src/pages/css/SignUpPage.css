@@ -1,0 +1,114 @@
+/* 전체 컨테이너 스타일 */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f9fafc;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 로고 스타일 */
+.signup-logo {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+/* 헤더 텍스트 스타일 */
+.signup-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* 회원가입 폼 스타일 */
+.signup-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* 입력 필드 스타일 */
+.signup-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.signup-form input:focus {
+  border-color: #7d3cf8;
+  outline: none;
+}
+
+/* 에러 메시지 스타일 */
+.signup-form .error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* 에러 애니메이션 */
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* 가입하기 버튼 스타일 */
+.signup-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #7d3cf8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #5a28c1;
+}
+
+/* 하단 로그인 링크 섹션 */
+.signup-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.signup-footer p {
+  margin: 0;
+}
+
+.signup-footer .login-link {
+  color: #7d3cf8;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.signup-footer .login-link:hover {
+  text-decoration: underline;
+}

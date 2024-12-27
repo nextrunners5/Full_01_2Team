@@ -24,6 +24,7 @@ const SchedulePage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalMode, setModalMode] = useState<ModalMode>("add");
   const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
+  const [scheduleUpdated, setScheduleUpdated] = useState<boolean>(false); // 일정 변경 트리거
   const calendarRef = useRef<{ updateSize: () => void; refreshEvents: () => void } | null>(null);
 
   /* 이벤트 클릭 핸들러 (수정 모드) */
@@ -73,7 +74,8 @@ const SchedulePage: React.FC = () => {
         alert("일정이 수정되었습니다!");
       }
 
-      calendarRef.current?.refreshEvents(); // 일정 새로고침
+      calendarRef.current?.refreshEvents(); // 캘린더 새로고침
+      setScheduleUpdated((prev) => !prev); // 상태 변경으로 리렌더링 트리거
       setIsModalOpen(false);
     } catch (error) {
       console.error("일정 저장/수정 실패:", error);
@@ -81,13 +83,14 @@ const SchedulePage: React.FC = () => {
     }
   };
 
-  /* 삭제 핸들러 */
+  /* 일정 삭제 핸들러 */
   const handleDeleteEvent = async () => {
     if (selectedEvent && selectedEvent.id) {
       try {
         await deleteSchedule(selectedEvent.id);
         alert("일정이 삭제되었습니다!");
-        calendarRef.current?.refreshEvents(); // 일정 새로고침
+        calendarRef.current?.refreshEvents(); // 캘린더 새로고침
+        setScheduleUpdated((prev) => !prev); // 상태 변경으로 리렌더링 트리거
         setIsModalOpen(false);
       } catch (error) {
         console.error("일정 삭제 실패:", error);
@@ -120,7 +123,10 @@ const SchedulePage: React.FC = () => {
               />
             </div>
           </div>
-          <RightSidebar onAddButtonClick={handleAddButtonClick} />
+          <RightSidebar 
+            onAddButtonClick={handleAddButtonClick}
+            scheduleUpdated={scheduleUpdated} // 추가됨
+          />
         </div>
       </div>
 
@@ -139,12 +145,8 @@ const SchedulePage: React.FC = () => {
                 endDate: typeof selectedEvent.end === "string"
                   ? selectedEvent.end
                   : selectedEvent.end?.toISOString().split("T")[0] || "",
-                startTime: typeof selectedEvent.start === "string"
-                  ? selectedEvent.start.split("T")[1]?.slice(0, 5) || ""
-                  : "",
-                endTime: typeof selectedEvent.end === "string"
-                  ? selectedEvent.end.split("T")[1]?.slice(0, 5) || ""
-                  : "",
+                startTime: "",
+                endTime: "",
                 title: selectedEvent.title,
                 description: selectedEvent.description || "",
               }

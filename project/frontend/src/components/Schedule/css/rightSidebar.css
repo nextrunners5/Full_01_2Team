@@ -1,13 +1,15 @@
 /* 사이드바 컨테이너 */
 .rightSidebar {
   width: 250px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  height: auto;
+  border-radius: 5px;
+  height: 90vh;
   margin-top: 2px;
-  background-color: #f0f0f0;
-  box-shadow: 1px 1px 6px -1px rgba(0,0,0,0.75);
-  overflow-y: auto;
+  background-color: #f9fafc;
+  box-shadow: 1px 1px 6px -1px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 /* 날짜 컨테이너 */
@@ -15,19 +17,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: auto;
   height: 50px;
   padding: 0 10px;
   border-radius: 5px;
-  background-color: #9c88ff;
-  box-shadow: 1px 1px 6px -1px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 6px -1px rgba(0, 0, 0, 0.75);
 }
 
 /* 오늘의 날짜 */
 .dateContainer p {
   font-size: 14px;
-  font-weight: bold;
-  color: white;
+  
+  color: black;
 }
 
 /* +버튼 스타일 */
@@ -35,27 +35,33 @@
   background-color: #6F42C1;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 5px;
   cursor: pointer;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+.styled-button:hover {
+  background-color: #7a6eb2;
 }
 
 /* 카드 컨테이너 */
 .cardContainer {
-  margin-top: 10px;
+  flex: 1;
   overflow-y: auto;
-  max-height: 600px;
+  padding: 10px;
 }
 
 /* 카드 스타일 */
 .card {
   background-color: #9c88ff;
-  color: white; 
-  border-radius: 10px;
+  color: white;
+  border-radius: 8px;
   padding: 10px;
-  margin: 10px;
-  box-shadow: 1px 1px 6px -1px rgba(0,0,0,0.75);
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 6px -1px rgba(0, 0, 0, 0.75);
+  word-wrap: break-word;
 }
 
 /* 카드 헤더 (일정, 시간) */
@@ -64,26 +70,135 @@
   justify-content: space-between;
   font-weight: bold;
   margin-bottom: 5px;
-  font-size: 17px;
+  font-size: 15px;
+}
+
+.cardHeader p {
+  font-size: 14px;
+  margin: 5px 0;
 }
 
 /* 카드 본문 (내용) */
 .cardBody {
-  font-size: 17px;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 5px 0;
+}
+
+.cardBody p {
+  margin: 0;
 }
 
 /* 카드 푸터 (설명) */
 .cardFooter {
-  font-size: 15px;
+  font-size: 13px;
   opacity: 0.8;
+}
+
+.cardFooter p {
+  margin: 10px 0;
+  word-wrap: break-word;
 }
 
 /* 일정 없음 메시지 */
 .noSchedule {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
   color: gray;
+  font-size: 13px;
+}
+
+/* 다가오는 일정 (추가 컨테이너) */
+.extraContainer {
+  height: 40%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 0 15px;
+  box-shadow: 3px 0px 13px -1px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 3px 0px 13px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 0px 13px -1px rgba(0,0,0,0.75);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* 추가 섹션 제목 (고정됨) */
+.extraContainer h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 10;
+  padding: 5px 0; 
+}
+
+/* 주간 일정 리스트 */
+.weeklyScheduleList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* 주간 일정 항목 */
+.weeklyScheduleItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.weeklyScheduleItem:last-child {
+  border-bottom: none;
+}
+
+/* 주간 일정 도트 아이콘 */
+.weeklyScheduleDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #6F42C1;
+}
+
+/* 주간 일정 제목 */
+.weeklyScheduleItem strong {
   font-size: 14px;
+  color: #333;
+  margin-right: auto;
+}
+
+/* 주간 일정 날짜 및 시간 */
+.weeklyScheduleItem p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+/* 일정 없음 메시지 (다가오는 일정) */
+.noWeeklySchedule {
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+  margin: 10px 0;
+}
+
+/* 더 보기 버튼 */
+.extra-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #6F42C1;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  display: inline-block;
+  text-align: center;
+}
+
+.extra-button:hover {
+  background-color: #5a379c;
 }

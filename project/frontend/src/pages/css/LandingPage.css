@@ -1,0 +1,286 @@
+@import "/node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+/* 전체 페이지 */
+.LandingPage {
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* 헤더 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header img {
+  width: 150px;
+  height: 45px;
+}
+
+.cta-button {
+  background-color: #6f42c1;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+}
+
+/* 히어로 섹션 */
+.hero {
+  text-align: center;
+  padding: 50px 20px 0 20px ;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #666;
+  font-size: 16px;
+}
+
+/* 주요 기능 섹션 */
+.features {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin: 50px 100px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards 0.5s;
+}
+
+.boxcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 50%;
+  padding-left: 50px;
+}
+
+.boxcontainer h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.box1 {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+
+.box1 h3 {
+  font-size: 20px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.box1 i {
+  font-size: 24px;
+  color: #6f42c1;
+}
+
+.box1 p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+
+
+/* 히어로 이미지 */
+.hero-image {
+  width: 50%;
+  height: 340px;
+  background: #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.75);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards 1s;
+}
+
+/* 서비스 특징 섹션 */
+.services {
+  text-align: center;
+  background: #baadff;
+  padding: 20px 20px;
+  color: white;
+  margin-top: 50px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards 1.5s;
+}
+
+.services h2 {
+  font-size: 28px;
+
+}
+
+.service-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.service {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 5px;
+  width: 30%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.service:hover {
+  transform: translateY(-20px);
+}
+
+.service i {
+  font-size: 40px;
+  color: #6f42c1;
+}
+
+.service h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.service p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* CTA 섹션 */
+.cta {
+  position: relative;
+  text-align: center;
+  padding: 100px 20px;
+  margin: 50px 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards 2s;
+}
+
+.cta video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: blur(3px);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+}
+
+.cta-content h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #6f42c1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+
+.cta-button.secondary {
+  background-color: #ddd;
+  color: black;
+}
+
+.cta-button:hover {
+  transform: scale(1.1);
+}
+
+/* 푸터 */
+.footer {
+  background: #222;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  text-align: left;
+  gap: 20px;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.copyright {
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+/* 애니메이션 효과 */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

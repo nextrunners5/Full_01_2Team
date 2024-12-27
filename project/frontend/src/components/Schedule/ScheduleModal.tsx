@@ -13,7 +13,7 @@ interface ScheduleModalProps {
     title: string;
     description: string;
   }) => void;
-  onDelete?: () => void; // 삭제 핸들러 추가
+  onDelete: () => void;
   selectedEvent?: {
     startDate: string;
     endDate: string;
