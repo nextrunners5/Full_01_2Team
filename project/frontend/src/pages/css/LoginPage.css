@@ -67,7 +67,7 @@
 .input-with-error {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* 입력 필드와 에러 메시지 간격 */
+  gap: 4px;
   margin-bottom: 15px;
 }
 

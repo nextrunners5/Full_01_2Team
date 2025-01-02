@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
         <img src={logo} alt="IdeaDaily Logo" />
       </div>
 
-      {/* 아이콘 컨테이너 */}
+      {/* 유저 프로필 컨테이너 */}
       <div className="icon-container"> 
         {isLoggedIn && userInfo ? (
           <div className="user-profile" onClick={handleProfileClick}>

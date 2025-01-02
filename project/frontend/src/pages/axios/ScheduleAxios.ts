@@ -22,7 +22,7 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-/* ✅ 일정 저장 (POST) */
+// 일정 저장 API (POST)
 export const saveSchedule = async (scheduleData: {
   startDate: string;
   endDate: string;
@@ -41,7 +41,7 @@ export const saveSchedule = async (scheduleData: {
   }
 };
 
-/* ✅ 일정 수정 (PUT) */
+// 일정 수정 API (PUT)
 export const updateSchedule = async (id: string, scheduleData: {
   startDate: string;
   endDate: string;
@@ -60,7 +60,7 @@ export const updateSchedule = async (id: string, scheduleData: {
   }
 };
 
-/* ✅ 일정 리스트 가져오기 (GET) */
+// 일정 조회 API (GET)
 export const fetchSchedules = async () => {
   try {
     const response = await axiosInstance.get("/");
@@ -72,7 +72,7 @@ export const fetchSchedules = async () => {
   }
 };
 
-/* ✅ 일정 삭제하기 (DELETE) */
+// 일정 삭제 API (DELETE)
 export const deleteSchedule = async (id: string) => {
   try {
     const response = await axiosInstance.delete(`/${id}`);
@@ -84,7 +84,7 @@ export const deleteSchedule = async (id: string) => {
   }
 };
 
-/* ✅ 일주일 일정 가져오기 (GET) */
+// 일주일간의 일정 조회 API (GET) 
 export const fetchUpcomingSchedules = async () => {
   try {
     const response = await axiosInstance.get("/upcoming");

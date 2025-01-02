@@ -31,7 +31,7 @@ interface AuthenticatedRequest extends Request {
   user?: { user_id: string; iat: number; exp: number; };
 }
 
-// ✅ **1. 일정 저장 API (POST)**
+// 일정 저장 API (POST)
 router.post('/', authenticateToken, (req: AuthenticatedRequest, res: Response) => {
   const { user_id } = req.user!;
   const { startDate, endDate, startTime, endTime, title, description } = req.body;
@@ -62,7 +62,7 @@ router.post('/', authenticateToken, (req: AuthenticatedRequest, res: Response) =
   );
 });
 
-// ✅ **2. 일정 조회 API (GET)**
+// 일정 조회 API (GET)
 router.get('/', authenticateToken, (req: AuthenticatedRequest, res: Response) => {
   const { user_id } = req.user!;
 
@@ -89,7 +89,7 @@ router.get('/', authenticateToken, (req: AuthenticatedRequest, res: Response) =>
   });
 });
 
-// ✅ **3. 일정 수정 API (PUT)**
+// 일정 수정 API (PUT)
 router.put('/:id', authenticateToken, (req: AuthenticatedRequest, res: Response) => {
   const { user_id } = req.user!;
   const { id } = req.params;
@@ -123,7 +123,7 @@ router.put('/:id', authenticateToken, (req: AuthenticatedRequest, res: Response)
   );
 });
 
-// ✅ **4. 일정 삭제 API (DELETE)**
+// 일정 삭제 API (DELETE)
 router.delete('/:id', authenticateToken, (req: AuthenticatedRequest, res: Response) => {
   const { user_id } = req.user!;
   const { id } = req.params;
@@ -144,7 +144,7 @@ router.delete('/:id', authenticateToken, (req: AuthenticatedRequest, res: Respon
   });
 });
 
-// ✅ **5. 일주일간의 일정 조회 API (GET)**
+// 일주일 일정 조회 API (GET)
 router.get('/upcoming', authenticateToken, (req: AuthenticatedRequest, res: Response) => {
   const { user_id } = req.user!;
 

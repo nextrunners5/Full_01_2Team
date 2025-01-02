@@ -1,6 +1,4 @@
 // 프로젝트 추가/수정 폼 컴포넌트
-
-import React from "react";
 import "../pages/css/ProjectPage.css";
 
 const ProjectDetails = () => {

@@ -86,15 +86,15 @@ const SchedulePage: React.FC = () => {
       };
 
       if (modalMode === "add") {
-        await saveSchedule(formattedSchedule); // POST 요청
+        await saveSchedule(formattedSchedule);
         alert("일정이 추가되었습니다!");
       } else if (modalMode === "edit" && selectedEvent?.id) {
         await updateSchedule(selectedEvent.id, formattedSchedule); // PUT 요청
         alert("일정이 수정되었습니다!");
       }
 
-      calendarRef.current?.refreshEvents(); // 캘린더 새로고침
-      setScheduleUpdated((prev) => !prev); // 상태 변경으로 리렌더링 트리거
+      calendarRef.current?.refreshEvents();
+      setScheduleUpdated((prev) => !prev);
       setIsModalOpen(false);
     } catch (error) {
       console.error("일정 저장/수정 실패:", error);
@@ -108,8 +108,8 @@ const SchedulePage: React.FC = () => {
       try {
         await deleteSchedule(selectedEvent.id);
         alert("일정이 삭제되었습니다!");
-        calendarRef.current?.refreshEvents(); // 캘린더 새로고침
-        setScheduleUpdated((prev) => !prev); // 상태 변경으로 리렌더링 트리거
+        calendarRef.current?.refreshEvents();
+        setScheduleUpdated((prev) => !prev);
         setIsModalOpen(false);
       } catch (error) {
         console.error("일정 삭제 실패:", error);
