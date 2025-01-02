@@ -3,11 +3,10 @@ import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import SchedulePage from "./pages/SchedulePage";
-import ProjectPage from "./pages/ProjectPage";
-import ProjectDetails from "./pages/ProjectDetails";
 import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
 import Mypage from "./pages/MyPage";
 import MyPageEdit from "./pages/MyPageEdit";
+import ProjectDashBoard from "./pages/ProjectDashBoard";
 
 function App() {
   return (
@@ -21,8 +20,7 @@ function App() {
         {/* 보호 페이지 */}
         <Route element={<ProtectedRoute />}>
           <Route path="/SchedulePage" element={<SchedulePage />} />
-          <Route path="/ProjectPage" element={<ProjectPage />} />
-          <Route path="/ProjectDetails" element={<ProjectDetails />} />
+          <Route path="/ProjectDashBoard" element={<ProjectDashBoard />} />
           <Route path="/Mypage" element={<Mypage />} />
           <Route path="/MyPageEdit" element={<MyPageEdit />} />
         </Route>
