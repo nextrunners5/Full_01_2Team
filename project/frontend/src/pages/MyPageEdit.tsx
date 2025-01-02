@@ -6,7 +6,7 @@ import profileImg1 from "../assets/profile1.webp";
 import profileImg2 from "../assets/profile2.webp";
 import profileImg3 from "../assets/profile3.webp";
 import { useNavigate } from "react-router-dom";
-import { getUserInfo, updateUserInfo, logoutUser } from "./axios/UserAxios";
+import { getUserInfo, updateUserInfo, logoutUser, deleteUserAccount } from "./axios/UserAxios";
 
 // 사용자 정보 인터페이스
 interface UserInfo {
@@ -94,6 +94,20 @@ const MyPageEdit: React.FC = () => {
     } catch (error: any) {
       console.error("회원정보 수정 실패:", error.message);
       alert("회원정보 수정에 실패했습니다.");
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (window.confirm("정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.")) {
+      try {
+        await deleteUserAccount();
+        alert("회원 탈퇴가 완료되었습니다.");
+        logoutUser();
+        navigate("/"); // 메인 페이지로 리다이렉트
+      } catch (error: any) {
+        console.error("회원 탈퇴 실패:", error.message);
+        alert("회원 탈퇴 중 오류가 발생했습니다.");
+      }
     }
   };
 
@@ -189,6 +203,11 @@ const MyPageEdit: React.FC = () => {
               onClick={() => navigate("/MyPage")}
             >
               취소
+            </button>
+          </div>
+          <div className="delete-account-section">
+            <button className="delete-account-button" onClick={handleDeleteAccount}>
+              탈퇴하기
             </button>
           </div>
         </div>

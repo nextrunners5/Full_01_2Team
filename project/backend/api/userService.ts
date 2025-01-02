@@ -201,5 +201,42 @@ router.put('/update', authenticateToken, async (req: Request, res: Response) => 
   }
 });
 
+router.delete('/delete', authenticateToken, async (req: Request, res: Response) => {
+  try {
+    if (!req.user || !req.user.user_id) {
+      return res.status(401).json({ success: false, message: '인증 정보가 없습니다.' });
+    }
+
+    const { user_id } = req.user;
+
+    // 트랜잭션 시작
+    const connection = await pool.getConnection();
+    await connection.beginTransaction();
+
+    try {
+      await connection.query(`DELETE FROM Schedules WHERE user_id = ?`, [user_id]);
+
+      const [result] = await connection.query(`DELETE FROM User WHERE user_id = ?`, [user_id]);
+
+      if ((result as any).affectedRows === 0) {
+        throw new Error('해당 사용자를 찾을 수 없습니다.');
+      }
+
+      // 트랜잭션 커밋
+      await connection.commit();
+      connection.release();
+
+      return res.status(200).json({ success: true, message: '회원 탈퇴가 완료되었습니다.' });
+    } catch (error: any) {
+      await connection.rollback();
+      connection.release();
+      console.error('회원 탈퇴 중 오류:', error.message);
+      return res.status(500).json({ success: false, message: '회원 탈퇴 중 오류 발생', error: error.message });
+    }
+  } catch (error: any) {
+    console.error('회원 탈퇴 API 오류:', error.message);
+    return res.status(500).json({ success: false, message: '서버 오류가 발생했습니다.', error: error.message });
+  }
+});
 
 export default router;

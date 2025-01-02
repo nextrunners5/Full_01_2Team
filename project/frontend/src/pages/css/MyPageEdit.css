@@ -215,3 +215,22 @@
 .footer-links .logout-button:hover {
   text-decoration: underline;
 }
+/* 사용자 탈퇴 */
+.delete-account-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.delete-account-button {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-account-button:hover {
+  background-color: #d9363e;
+}

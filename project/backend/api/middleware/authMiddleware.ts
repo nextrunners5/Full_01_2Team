@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from 'express';
 interface DecodedToken extends JwtPayload {
   user_id: string;
     iat: number;
-  exp: number;
+    exp: number;
 }
 
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {

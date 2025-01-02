@@ -43,6 +43,22 @@ export const updateUserInfo = async (formData: any) => {
   }
 };
 
+// 사용자 계정 삭제
+export const deleteUserAccount = async () => {
+  try {
+    const response = await axios.delete("http://localhost:3000/api/User/delete", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    console.log("회원 탈퇴 성공:", response.data);
+    return response.data;
+  } catch (error: any) {
+    console.error("회원 탈퇴 중 오류 발생:", error.response?.data || error.message);
+    throw new Error("회원 탈퇴 중 오류가 발생했습니다.");
+  }
+};
+
 // 로그아웃
 export const logoutUser = () => {
   localStorage.removeItem("token");

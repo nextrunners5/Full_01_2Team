@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./css/MyPage.css";
 import Logo from "../assets/logo.png";
+import profile1 from "../assets/profile1.webp";
 import { useNavigate } from "react-router-dom";
 import { getUserInfo, logoutUser } from "./axios/UserAxios";
 import { Link } from "react-router-dom";
@@ -74,7 +75,7 @@ const MyPage: React.FC = () => {
         <div className="mypage-content">
         <div className="profile-img-container">
         <img
-          src={userInfo?.profile_img || Logo}
+          src={userInfo?.profile_img || profile1}
           alt="사용자 프로필 이미지"
           className="profile-img"
         />
