@@ -1,0 +1,510 @@
+body {
+  padding: 0;
+  margin: 0;
+  background: #F9FAFB;
+}
+
+.projectDashBoardContainer {
+  display: flex;
+  /* gap: 40px; */
+}
+
+/* .side{
+  display: flex;
+  flex-direction: row;
+} */
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* padding: 30px; */
+
+}
+
+.projectDashBoardTitle h1 {
+  font-family: Roboto;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: -0.75px;
+  color: #111827;
+  opacity: 1;
+}
+
+/* 타이틀 밑 프로젝트 현황숫자 */
+.bigCurrentBoard {
+  display: flex;
+  gap: 20px;
+  /* width: 100%; */
+  align-items: center;
+  justify-content: space-between;
+}
+
+.numberBox {
+  width: 308px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  /* gap: 0px 15px; */
+  gap: 20px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  /* align-items: center; */
+  justify-content: center;
+  border-radius: 8px;
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1),0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.numberBox:hover {
+  cursor: pointer;
+}
+
+.numberTitle {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #6B7280;
+  margin: 0;
+}
+
+/* 프로젝트 세부내용 컨테이너 */
+.projectDetailContainer {
+  /* width: 100%; */
+  gap: 30px;
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  border-radius: 8px;
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1),0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.topProjectDetailContainer{
+  /* width: 100%; */
+  display: flex;
+  gap: 30px;
+}
+
+.left {
+  width: 1000px;
+  /* height: 560px; */
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 0px 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border-radius: 8px;
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1),0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.recentProjectContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+
+.recentProjectTitle {
+  display: flex;
+  display: row;
+  align-items: center;
+  /* gap: 650px; */
+  justify-content:space-between;
+  width: 100%;
+  height: 28px;
+}
+
+.recentProjectTitle h2 {
+  font-family: Roboto;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0px;
+  color: #000000;
+  /* width: 116px; */
+}
+
+.projectDeleteBtn {
+  width: 88px;
+  height: 34px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0px;
+  align-content: center;
+  border-radius: 6px;
+  border: none;
+  background: #A6A6A7;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.recentProjectBody{
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 20px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid #E5E7EB;
+  transition: all 0.5s;
+}
+
+.recentProjectBody:hover{
+  background-color: whitesmoke;
+}
+
+.recentProjectEachTitle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recentProjectEachTitle .title {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.detailProject{
+  text-decoration: none;
+}
+
+.smallStatus {
+  /* width: 54.64px; */
+  height: 28px;
+  text-align: center;
+  border-radius: 4px;
+  padding: 3px 10px;
+  opacity: 1;
+  /* background: #DBEAFE; */
+  align-content: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  letter-spacing: 0px;
+  /* color: #1E40AF; */
+}
+
+/* 상태에 따른 색상 변경 */
+.statusProgress{
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
+.statusComplete{
+  background: #F0FDF4;
+  color: #16A34A;
+}
+
+.statusWait{
+  background: #FEFCE8;
+  color: #CA8A04;
+}
+
+.projectDescribe {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #4B5563;
+}
+
+.bottom1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottom2 {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #6B7280;
+}
+
+.projectDelete {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-top: 10px;
+}
+
+.projectDelete .trashIcon{
+  fill: #8a8a8a;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.right .smallCurrentBoard {
+  width: 282px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 15px 10px;
+  align-content: flex-start;
+  border-radius: 8px;
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1),0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.smallCurrentBoardText {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0px;
+  opacity: 1;
+}
+
+.ImportantTitle {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0px;
+  opacity: 1;
+}
+
+.ImportantPlan {
+  width: 234px;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  row-gap: 0px;
+  flex-wrap: wrap;
+  align-content: center;
+  border-radius: 6px;
+  opacity: 1;
+  background: #F9FAFB;
+}
+
+.importantDate {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+  /* color: #000000; */
+  color: #eb2525;
+}
+
+/* .projectProgress {
+  width: 234px;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  row-gap: 0px;
+  flex-wrap: wrap;
+  align-content: center;
+  border-radius: 6px;
+  opacity: 1;
+  background: #EFF6FF;
+} */
+
+/* .projectComplete {
+  width: 234px;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  row-gap: 0px;
+  flex-wrap: wrap;
+  align-content: center;
+  border-radius: 6px;
+  opacity: 1;
+  background: #F0FDF4;
+} */
+
+/* .projectPlan {
+  width: 234px;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  row-gap: 0px;
+  flex-wrap: wrap;
+  align-content: center;
+  border-radius: 6px;
+  opacity: 1;
+  background: #FEFCE8;
+} */
+
+.purpleBtn{
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-content: center;
+  border-radius: 6px;
+  opacity: 1;
+  background: #6F42C1;
+  transition: all 0.5s ease;
+}
+
+.purpleBtn:hover{
+  background-color: #8661ca;
+}
+
+.purpleBtn h3{
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: normal;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.plusIcon {
+  width: 25px;
+  height: 25px;
+  color: white;
+}
+
+.createBtnLink{
+  text-decoration: none;
+}
+
+.backBtnLink {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0px;
+  color: #4B5563;
+  text-decoration: none;
+}
+
+.backBtnLink h3 {
+  font-weight: 400;
+}
+
+/* 대시보드 숫자 - big*/
+.allNumber1{
+  margin: 0;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 32px;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.progressNumber1{
+  margin: 0;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 32px;
+  letter-spacing: 0px;
+  color: #3B82F6;
+}
+
+.completeNumber1{
+  margin: 0;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 32px;
+  letter-spacing: 0px;
+  color: #22C55E;
+}
+
+.waitNumber1{
+  margin: 0;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 32px;
+  letter-spacing: 0px;
+  color: #EAB308;
+}
+
+/* 아이콘 */
+.allIcon1{
+  width: 30px;
+  height: 30px;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  fill: #000000;
+}
+
+.progressIcon1{
+  width: 30px;
+  height: 30px;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  fill: #3B82F6;
+}
+
+.completeIcon1{
+  width: 30px;
+  height: 30px;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  fill: #22C55E;
+}
+
+.planIcon1{
+  width: 35px;
+  height: 35px;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  fill: #EAB308;
+}
