@@ -2,11 +2,13 @@ import "./css/LoginPage.css";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { loginUser } from "./axios/SignUpAxios";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [errorShake, setErrorShake] = useState(false); // 에러 애니메이션 상태
+  const [rememberMe, setRememberMe] = useState(false); // 로그인 상태 유지 여부
 
   // 에러 애니메이션 리셋
   useEffect(() => {
@@ -18,18 +20,31 @@ const LoginPage = () => {
     }
   }, [errorShake]);
 
-  const handleLogin = () => {
-    const username = (document.getElementById("username") as HTMLInputElement)
-      .value;
-    const password = (document.getElementById("password") as HTMLInputElement)
-      .value;
+  // 로그인 핸들러
+  const handleLogin = async () => {
+    const username = (document.getElementById("username") as HTMLInputElement).value;
+    const password = (document.getElementById("password") as HTMLInputElement).value;
 
-    if (username === "admin" && password === "1234") {
-      setErrorMessage("");
-      alert("로그인 성공!");
-      navigate("/SchedulePage");
-    } else {
-      setErrorMessage("아이디 또는 비밀번호가 일치하지 않습니다.");
+    if (!username || !password) {
+      setErrorMessage("아이디와 비밀번호를 입력해주세요.");
+      setErrorShake(true);
+      return;
+    }
+
+    try {
+      const response = await loginUser({ user_id: username, user_pw: password });
+
+      // 토큰 저장 및 페이지 이동
+      if (response.token) {
+        localStorage.setItem("token", response.token);
+        alert(response.message || "로그인 성공!");
+        navigate("/SchedulePage");
+      } else {
+        throw new Error("토큰이 반환되지 않았습니다.");
+      }
+    } catch (error: any) {
+      console.error("로그인 실패:", error.message);
+      setErrorMessage(error.message || "로그인 중 오류가 발생했습니다.");
       setErrorShake(true);
     }
   };
@@ -55,7 +70,12 @@ const LoginPage = () => {
 
         <div className="login-options">
           <label>
-            <input type="checkbox" /> 로그인 상태 유지
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={() => setRememberMe(!rememberMe)}
+            />
+            로그인 상태 유지
           </label>
           <Link to="/forgot-password">비밀번호를 잊으셨나요?</Link>
         </div>

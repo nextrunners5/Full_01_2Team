@@ -1,4 +1,4 @@
-/* 전체 컨테이너 스타일 */
+/* 전체 컨테이너 */
 .signup-container {
   display: flex;
   flex-direction: column;
@@ -16,50 +16,98 @@
   margin-bottom: 20px;
 }
 
-/* 헤더 텍스트 스타일 */
+/* 제목 스타일 */
 .signup-container h2 {
   font-size: 24px;
   font-weight: bold;
-  margin: 10px 0;
-  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* 회원가입 폼 스타일 */
-.signup-form {
+/* 카드 박스 스타일 */
+.signup-card {
   width: 100%;
   max-width: 400px;
-  padding: 30px;
-  border-radius: 8px;
   background-color: #ffffff;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
   text-align: left;
-}
-
-/* 입력 필드 스타일 */
-.signup-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
   box-sizing: border-box;
 }
 
-.signup-form input:focus {
+/* 입력 필드 스타일 */
+.input-wrapper {
+  margin-bottom: 15px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: calc(100% - 90px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.input-group .small-button {
+  width: 100px;
+  padding: 10px;
+  background-color: #7d3cf8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-group .small-button:hover {
+  background-color: #5a28c1;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.input-wrapper input:focus {
   border-color: #7d3cf8;
   outline: none;
 }
-
-/* 에러 메시지 스타일 */
-.signup-form .error-message {
-  color: red;
+.signup-footer{
   font-size: 14px;
+  color: #666;
+  text-align: center;
   margin-bottom: 10px;
-  text-align: left;
 }
 
-/* 에러 애니메이션 */
+.login-link{
+  color: #7d3cf8;
+  align-items: center;
+  font-size: 14px;
+}
+.login-link:hover{
+  color: #7d3cf8;
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* 에러 메시지 스타일 */
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* 흔들림 애니메이션 */
 .shake {
   animation: shake 0.3s ease-in-out;
 }
@@ -72,43 +120,13 @@
   100% { transform: translateX(0); }
 }
 
-/* 가입하기 버튼 스타일 */
+/* 버튼 스타일 */
 .signup-button {
   width: 100%;
   padding: 12px;
-  margin-top: 10px;
   background-color: #7d3cf8;
   color: white;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.signup-button:hover {
-  background-color: #5a28c1;
-}
-
-/* 하단 로그인 링크 섹션 */
-.signup-footer {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-}
-
-.signup-footer p {
-  margin: 0;
-}
-
-.signup-footer .login-link {
-  color: #7d3cf8;
-  font-weight: bold;
-  cursor: pointer;
-  margin-left: 5px;
-}
-
-.signup-footer .login-link:hover {
-  text-decoration: underline;
 }

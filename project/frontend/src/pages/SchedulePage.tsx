@@ -1,13 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Headar";
 import Calendar from "../components/Schedule/Calendar";
 import ScheduleModal from "../components/Schedule/ScheduleModal";
 import RightSidebar from "../components/Schedule/rightSidebar";
-import { saveSchedule, updateSchedule, deleteSchedule } from "./axios/ScheduleAxios";
-import './css/SchedulePage.css';
+import {
+  saveSchedule,
+  updateSchedule,
+  deleteSchedule,
+} from "./axios/ScheduleAxios";
+import "./css/SchedulePage.css";
 
-/* 이벤트 인터페이스 */
+// 이벤트 인터페이스
 interface Event {
   id: string;
   title: string;
@@ -16,18 +21,32 @@ interface Event {
   description?: string;
 }
 
-/* 모드 타입 */
+// 모드 타입
 type ModalMode = "add" | "edit";
 
 const SchedulePage: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalMode, setModalMode] = useState<ModalMode>("add");
   const [isSidebarVisible, setSidebarVisible] = useState<boolean>(true);
   const [scheduleUpdated, setScheduleUpdated] = useState<boolean>(false); // 일정 변경 트리거
-  const calendarRef = useRef<{ updateSize: () => void; refreshEvents: () => void } | null>(null);
+  const calendarRef = useRef<{
+    updateSize: () => void;
+    refreshEvents: () => void;
+  } | null>(null);
 
-  /* 이벤트 클릭 핸들러 (수정 모드) */
+  // 사용자 인증 확인
+  useEffect(() => {
+    const token =
+      localStorage.getItem("token") || sessionStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/LoginPage");
+    }
+  }, [navigate]);
+
+  // 이벤트 클릭 핸들러 (수정 모드)
   const handleEventClick = (event: Event) => {
     setSelectedEvent({
       id: event.id,
@@ -40,14 +59,14 @@ const SchedulePage: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  /* 이벤트 추가 버튼 클릭 (추가 모드) */
+  // 이벤트 추가 버튼 클릭 (추가 모드)
   const handleAddButtonClick = () => {
     setSelectedEvent(null);
     setModalMode("add");
     setIsModalOpen(true);
   };
 
-  /* 일정 저장 및 수정 핸들러 */
+  // 일정 저장 및 수정 핸들러
   const handleSaveEvent = async (event: {
     startDate: Date | null;
     endDate: Date | null;
@@ -83,7 +102,7 @@ const SchedulePage: React.FC = () => {
     }
   };
 
-  /* 일정 삭제 핸들러 */
+  // 일정 삭제 핸들러
   const handleDeleteEvent = async () => {
     if (selectedEvent && selectedEvent.id) {
       try {
@@ -99,7 +118,7 @@ const SchedulePage: React.FC = () => {
     }
   };
 
-  /* 사이드바 토글 핸들러 */
+  // 사이드바 토글 핸들러
   const handleLogoClick = () => {
     setSidebarVisible(!isSidebarVisible);
     setTimeout(() => {
@@ -109,23 +128,20 @@ const SchedulePage: React.FC = () => {
 
   return (
     <div className="container">
-      <div className={`sidebar ${isSidebarVisible ? '' : 'hidden'}`}>
+      <div className={`sidebar ${isSidebarVisible ? "" : "hidden"}`}>
         <Sidebar />
       </div>
-      <div className={`mainContent ${isSidebarVisible ? '' : 'expanded'}`}>
+      <div className={`mainContent ${isSidebarVisible ? "" : "expanded"}`}>
         <Header onLogoClick={handleLogoClick} />
         <div className="centerContainer">
           <div className="centerbox">
             <div className="centercard">
-              <Calendar
-                onEventClick={handleEventClick}
-                ref={calendarRef}
-              />
+              <Calendar onEventClick={handleEventClick} ref={calendarRef} />
             </div>
           </div>
-          <RightSidebar 
+          <RightSidebar
             onAddButtonClick={handleAddButtonClick}
-            scheduleUpdated={scheduleUpdated} // 추가됨
+            scheduleUpdated={scheduleUpdated}
           />
         </div>
       </div>
@@ -139,12 +155,14 @@ const SchedulePage: React.FC = () => {
         selectedEvent={
           selectedEvent
             ? {
-                startDate: typeof selectedEvent.start === "string"
-                  ? selectedEvent.start
-                  : selectedEvent.start.toISOString().split("T")[0],
-                endDate: typeof selectedEvent.end === "string"
-                  ? selectedEvent.end
-                  : selectedEvent.end?.toISOString().split("T")[0] || "",
+                startDate:
+                  typeof selectedEvent.start === "string"
+                    ? selectedEvent.start
+                    : selectedEvent.start.toISOString().split("T")[0],
+                endDate:
+                  typeof selectedEvent.end === "string"
+                    ? selectedEvent.end
+                    : selectedEvent.end?.toISOString().split("T")[0] || "",
                 startTime: "",
                 endTime: "",
                 title: selectedEvent.title,

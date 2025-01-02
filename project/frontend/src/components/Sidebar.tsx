@@ -1,6 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaCalendarAlt, FaTasks, FaUser } from 'react-icons/fa';
-import './css/Sidebar.css';
+import { Link, useLocation } from "react-router-dom";
+import { FaHome, FaCalendarAlt, FaTasks, FaUser } from "react-icons/fa";
+import "./css/Sidebar.css";
 
 const Sidebar: React.FC = () => {
   const location = useLocation(); // 현재 경로 확인
@@ -23,8 +23,8 @@ const Sidebar: React.FC = () => {
             <FaTasks /> 프로젝트
           </Link>
         </li>
-        <li className={location.pathname === "/UserPage" ? "active" : ""}>
-          <Link to="/UserPage">
+        <li className={location.pathname === "/Mypage" ? "active" : ""}>
+          <Link to="/Mypage">
             <FaUser /> 마이페이지
           </Link>
         </li>

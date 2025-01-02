@@ -16,13 +16,23 @@
   flex-direction: column;
   background-color: white;
   width: 400px;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: absolute;
   cursor: move;
 }
 .modalbox {
-  margin: 20px 0 10px 15px;
+  margin: 0;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .title {
@@ -38,30 +48,36 @@
 
 .inputContainer1 {
   display: flex;
-  margin-bottom: 10px;
+  margin: 0 10px 5px 10px;
+  gap:10px;
+  font-size: 14px;
 }
+
 .inputContainer2 {
   display: flex;
-  margin-bottom: 10px;
+  margin: 0 10px 5px 10px;
+  gap:10px;
+  font-size: 14px;
 }
 
 .dateLabel {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-right: 10px;
 }
 .timeLabel {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-right: 10px;
+  
 }
 .titleLabel {
-  margin-bottom: 3px;
+  margin: 10px 10px 5px 10px;
+  font-size: 17px;
 }
 .descriptionLabel {
-  margin-bottom: 3px;
+  margin: 10px 10px 5px 10px;
+  font-size: 17px;
 }
 
 .dateLabelTitle {
@@ -72,27 +88,56 @@
 }
 
 .dateInput {
-  width: 95%;
+  width: 85%;
   margin-bottom: 5px;
+  padding: 5px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
 }
 
 .timeInput {
-  width: 95%;
+  width: 85%;
   margin-bottom: 5px;
+  padding: 5px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
 }
 
 .titleInput {
-  width: 94%;
+  width: 91.5%;
+  margin: 0 0 5px 10px;
+  padding: 5px 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
 }
 
 .descriptionInput {
   flex: 1;
   height: 100px;
-  width: 95%;
+  width: 91.5%;
+  margin: 0 0 5px 10px;
+  padding: 5px 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
 }
 
 .addButton {
-  margin: 10px 21px 20px 10px;
   background-color: #6f42c1;
   height: 35px;
   width: 50px;
@@ -101,7 +146,16 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.buttonContainer{
+  display: flex;
+  justify-content: right;
+  align-items: center ;
+  gap:10px;
+  margin: 10px;
+  
+}
 .cancelButton {
+  
   color: rgb(9, 9, 9);
   background-color: #d3c8e6;
   height: 35px;
@@ -111,7 +165,7 @@
   cursor: pointer;
 }
 .deleteButton{
-  margin-left: 200px;
+  
   color: rgb(255, 255, 255);
   background-color: #f75d57;
   height: 35px;

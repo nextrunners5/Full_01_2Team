@@ -1,14 +1,13 @@
 import "./css/LandingPage.css";
 import logo from "../assets/logo.png";
 import mainImg from "../assets/mainImg.png";
-import MD from "../assets/MD.mp4";
+import MD2 from "../assets/MD2.mp4";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // 페이지 이동을 위한 useNavigate
+import { useNavigate } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
 
-  // 스크롤 애니메이션 효과
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -33,12 +32,11 @@ const LandingPage: React.FC = () => {
 
   // 로그인 페이지로 이동
   const goToLogin = () => {
-    navigate("/loginPage");
+    navigate("/LoginPage");
   };
 
   return (
     <div className="homepage">
-      {/* 헤더 섹션 */}
       <header className="header fade-in">
         <img src={logo} alt="IdeaDaily Logo" />
         <button className="cta-button" onClick={goToLogin}>
@@ -46,13 +44,11 @@ const LandingPage: React.FC = () => {
         </button>
       </header>
 
-      {/* 히어로 섹션 */}
       <section className="hero fade-in">
         <h1>스마트한 일정관리의 시작</h1>
         <p>효율적인 시간 관리와 생산성 향상을 위한 최적의 솔루션</p>
       </section>
 
-      {/* 주요 기능 섹션 */}
       <section className="features fade-in">
         <div className="boxcontainer">
           <h1>주요 기능</h1>
@@ -82,7 +78,6 @@ const LandingPage: React.FC = () => {
         />
       </section>
 
-      {/* 서비스 특징 섹션 */}
       <section className="services fade-in">
         <h2>서비스 특징</h2>
         <div className="service-container">
@@ -104,10 +99,9 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA 섹션 (비디오 백그라운드) */}
       <section className="cta fade-in">
         <video autoPlay loop muted playsInline className="cta-video">
-          <source src={MD} type="video/mp4" />
+          <source src={MD2} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="cta-content">
@@ -119,7 +113,6 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 푸터 섹션 */}
       <footer className="footer fade-in">
         <div className="footer-content">
           <div>

@@ -23,3 +23,32 @@
   height: 40px;
   margin-top: 10px;
 }
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.user-profile .user-profile-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}

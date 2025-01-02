@@ -1,8 +1,28 @@
 import axios from "axios";
 
+// API 기본 URL 설정
 const API_BASE_URL = "http://localhost:3000/api/Schedules";
 
-/* 일정 저장 (POST) */
+// Axios 인스턴스 생성
+const axiosInstance = axios.create({
+  baseURL: API_BASE_URL,
+});
+
+// 요청 인터셉터: 인증 토큰 추가
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token"); // 로컬 스토리지에서 토큰 가져오기
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`; // Authorization 헤더에 토큰 추가
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+/* ✅ 일정 저장 (POST) */
 export const saveSchedule = async (scheduleData: {
   startDate: string;
   endDate: string;
@@ -12,7 +32,7 @@ export const saveSchedule = async (scheduleData: {
   description: string;
 }) => {
   try {
-    const response = await axios.post(API_BASE_URL, scheduleData);
+    const response = await axiosInstance.post("/", scheduleData);
     console.log("일정 저장 응답:", response.data);
     return response.data;
   } catch (error: any) {
@@ -21,7 +41,7 @@ export const saveSchedule = async (scheduleData: {
   }
 };
 
-/* 일정 수정 (PUT) */
+/* ✅ 일정 수정 (PUT) */
 export const updateSchedule = async (id: string, scheduleData: {
   startDate: string;
   endDate: string;
@@ -31,7 +51,7 @@ export const updateSchedule = async (id: string, scheduleData: {
   description: string;
 }) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/${id}`, scheduleData);
+    const response = await axiosInstance.put(`/${id}`, scheduleData);
     console.log("일정 수정 응답:", response.data);
     return response.data;
   } catch (error: any) {
@@ -40,10 +60,11 @@ export const updateSchedule = async (id: string, scheduleData: {
   }
 };
 
-/* 일정 리스트 가져오기 (GET) */
+/* ✅ 일정 리스트 가져오기 (GET) */
 export const fetchSchedules = async () => {
   try {
-    const response = await axios.get(API_BASE_URL);
+    const response = await axiosInstance.get("/");
+    console.log("일정 데이터 불러오기 성공:", response.data);
     return response.data.data;
   } catch (error: any) {
     console.error("일정 데이터 불러오기 실패:", error.response?.data || error.message);
@@ -51,10 +72,10 @@ export const fetchSchedules = async () => {
   }
 };
 
-/* 일정 삭제하기 (DELETE) */
+/* ✅ 일정 삭제하기 (DELETE) */
 export const deleteSchedule = async (id: string) => {
   try {
-    const response = await axios.delete(`${API_BASE_URL}/${id}`);
+    const response = await axiosInstance.delete(`/${id}`);
     console.log("일정 삭제 성공:", response.data);
     return response.data;
   } catch (error: any) {
@@ -63,10 +84,10 @@ export const deleteSchedule = async (id: string) => {
   }
 };
 
-/* 일주일 일정 가져오기 (GET) */
+/* ✅ 일주일 일정 가져오기 (GET) */
 export const fetchUpcomingSchedules = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/upcoming`);
+    const response = await axiosInstance.get("/upcoming");
     console.log("일주일간의 일정 조회 성공:", response.data);
     return response.data.data;
   } catch (error: any) {
