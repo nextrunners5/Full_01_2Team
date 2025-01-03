@@ -42,7 +42,8 @@ router.get('/api/commonType', (req: Request,res: Response) => {
 //프로젝트 추가 API
 router.post('/api/projectService', async(req,res)=>{
   console.log(req.body);
-  const {importance, status, type, title, startDate, endDate, manager, description} = req.body;
+  const {importance, status, type, title, startDate, endDate, manager, description, userId} = req.body;
+  console.log("user_ID: ", userId);
   console.log(typeof startDate);
   console.log(startDate);
 
@@ -67,7 +68,7 @@ router.post('/api/projectService', async(req,res)=>{
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
     const values = [
-      "user123", statusCommonId, typeCommonId, title,
+      userId, statusCommonId, typeCommonId, title,
       description, importanceNumber, formattedStartDate,
       formattedEndDate, manager
     ];

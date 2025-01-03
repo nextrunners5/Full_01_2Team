@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import "./ProjectCreate.css";
 import '../pages/ProjectCreate.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface Common{
   common_id: number;
@@ -18,6 +18,7 @@ export interface Project {
   endDate : string;
   manager : string;
   description: string;
+  userId?: string;
 }
 
 interface ProjectFormProps {
@@ -37,11 +38,29 @@ const ProjectForm: React.FC<ProjectFormProps> = ({project = {
   endDate: '',
   manager: '',
   description: '',
+  userId: undefined,
 }, onSubmit, titleText, buttonText}) => { 
 
+  const navigate = useNavigate();
   const [status, setStatus] = useState<Common[]>([]);
   const [type, setType] = useState<Common[]>([]);
   const [formData, setFormData] = useState<Project>(project);
+  const [user, setUser] = useState<string | null>(null);
+  
+  // 사용자 인증 확인
+  useEffect(() => {
+    const token =
+      localStorage.getItem("token") || sessionStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/LoginPage");
+    } else {
+      const storedUserId = localStorage.getItem("userId") || sessionStorage.getItem("userId");
+      setUser(storedUserId);
+      // fetchProjects(storedUserId);
+    }
+  }, [navigate]);
+
 
   useEffect(() => {
     const fetchStatus = async () => {
@@ -97,7 +116,12 @@ const ProjectForm: React.FC<ProjectFormProps> = ({project = {
       alert('종료일은 시작일보다 늦어야 합니다.');
       return;
     }
-    onSubmit(formData);
+    const projectToSubmit = {
+      ...formData,
+      userId: user ? user : undefined // 유저 정보 포함
+    };
+
+    onSubmit(projectToSubmit);
   }
 
   

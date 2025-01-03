@@ -59,21 +59,52 @@ const ProjectDashBoard: React.FC = () => {
     fetchStatus();
   },[]);
 
+  const [userId, setUserId] = useState<string | null>(null)
+  // 사용자 인증 확인
+  useEffect(() => {
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/LoginPage");
+    } else {
+      const storedUserId = localStorage.getItem("userId") || sessionStorage.getItem("userId");
+      setUserId(storedUserId);
+      // fetchProjects(storedUserId);
+    }
+  }, [navigate]);
+
   //유저의 모든 프로젝트 가져오기
   const [describe, setDescribe] = useState<Project[]>([]);
-
-  useEffect(()=> {
-    const fetchProjects = async () => {
-      try {
-        const response = await axios.get<Project[]>('http://localhost:3000/api/ProjectDashBoard/ProjectData');
+  const fetchProjects = async (userId: string | null) => {
+    if(userId) {
+      try{
+        const response = await axios.get<Project[]>(`http://localhost:3000/api/ProjectDashBoard/ProjectData/${userId}`);
         setDescribe(response.data);
         console.log(response.data);
-      } catch (err) {
-        console.error('프로젝트 정보를 가져오는 데 실패했습니다.',err);
+      } catch(err){
+        console.error('프로젝트 정보를 가져오는 데 실패했습니다.', err);
       }
-    };
-    fetchProjects();
-  },[]);
+    }
+  }
+
+  useEffect(() => {
+    if (userId) {
+      fetchProjects(userId);
+    }
+  }, [userId]);
+
+  // useEffect(()=> {
+  //   const fetchProjects = async (userId: string | null) => {
+  //     try {
+  //       const response = await axios.get<Project[]>(`http://localhost:3000/api/ProjectDashBoard/ProjectData/${userId}`);
+  //       setDescribe(response.data);
+  //       console.log(response.data);
+  //     } catch (err) {
+  //       console.error('프로젝트 정보를 가져오는 데 실패했습니다.',err);
+  //     }
+  //   };
+  //   // fetchProjects();
+  // },[]);
 
 
   //중요도에 따른 프로젝트
@@ -118,7 +149,7 @@ const ProjectDashBoard: React.FC = () => {
     if(!confirmDelete) return;
 
     try{
-      await axios.delete(`http://localhost:3000/api/ProjectDashBoard/ProjectService/${projectId}`);
+      await axios.delete(`http://localhost:3000/api/ProjectDashBoard/ProjectService/${projectId}`, {data: userId});
       setDescribe((prev) => prev.filter(describe => describe.project_id !== projectId));
 
       alert('작업이 삭제되었습니다.');

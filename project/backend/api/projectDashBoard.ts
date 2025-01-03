@@ -78,8 +78,16 @@ router.get('/api/ProjectDashBoard/ProjectComplete', async(req: Request, res: Res
 });
 
 //유저의 프로젝트 리스트
-router.get('/api/ProjectDashBoard/ProjectData', async(req: Request, res: Response) => {
-  const userId = 'user123';
+router.get('/api/ProjectDashBoard/ProjectData/:userId', async(req: Request, res: Response) => {
+  // const userId = 'user123';
+  const userId = req.params.userId;
+  console.log("userId : ", userId);
+
+  if (!userId) {
+    console.error('유저 ID가 존재하지 않습니다.');
+    return res.status(400).send('유저 ID가 존재하지 않습니다.');
+  }
+
   const query = "select project_id, project_title, project_details, project_status, project_endDate from Project where user_id = ?";
 
   pool.query(query, [userId], (err, results: RowDataPacket[]) => {
@@ -187,11 +195,12 @@ router.get('/api/ProjectDashBoard/ProjectData/:statusName', async (req: Request,
 //프로젝트 삭제
 router.delete('/api/ProjectDashBoard/ProjectService/:projectId', (req: Request, res: Response) => {
   const {projectId} = req.params;
+  const {userId} = req.body;
   console.log("삭제요청 projectId:", projectId);
-  const query = "delete from Project where project_id = ?";
+  const query = "delete from Project where project_id = ? and user_id = ?";
   console.log(query);
 
-  pool.query(query, [projectId], (err, results) => {
+  pool.query(query, [projectId, userId], (err, results) => {
     if(err) {
       console.error('프로젝트 삭제 실패', err);
       return res.status(500).send('프로젝트 삭제 실패');
