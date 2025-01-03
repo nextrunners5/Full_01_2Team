@@ -3,30 +3,9 @@ import { config } from 'dotenv';
 config();  // 환경 변수 로드
 import { Request, Response, Router } from "express";
 import { createPool, RowDataPacket } from "mysql2";
+import pool from "./dbConfig.js"
 
 const router = Router();
-
-// MySQL 연결 설정
-const dbConfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-};
-
-// MySQL 연결 풀 생성
-const pool = createPool(dbConfig);
-
-pool.getConnection((err, connection) => {
-  //DB 연결 실패
-  if(err){
-    console.error('DB 연결 실패', err);
-    return;
-  }
-  //DB 연결 성공
-  console.log('DB 연결 성공');
-  connection.release(); //pool에 connection 반환
-})
 
 const countProjectsByStatus = (status: number): Promise<number> => {
   return new Promise((resolve, reject) => {

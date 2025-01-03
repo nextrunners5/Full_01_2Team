@@ -1,3 +1,5 @@
+import { config } from 'dotenv';
+config();  // 환경 변수 로드
 import { Router, Request, Response } from 'express';
 import { createPool, RowDataPacket, ResultSetHeader } from 'mysql2/promise';
 import jwt from 'jsonwebtoken';

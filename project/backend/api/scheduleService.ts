@@ -3,30 +3,9 @@ config();  // 환경 변수 로드
 import { Router, Request, Response } from 'express';
 import { createPool, ResultSetHeader } from 'mysql2';
 import { authenticateToken } from './middleware/authMiddleware.js';
+import pool from "./dbConfig.js"
 
 const router = Router();
-
-// MySQL 연결 설정
-const dbConfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-};
-
-// MySQL 연결 풀 생성
-const pool = createPool(dbConfig);
-
-// MySQL 연결 테스트
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error('MySQL 데이터베이스 연결 실패:', err);
-    process.exit(1);
-  } else {
-    console.log('MySQL 데이터베이스 연결 성공');
-    connection.release();
-  }
-});
 
 // 유저 ID 타입 정의
 interface AuthenticatedRequest extends Request {
