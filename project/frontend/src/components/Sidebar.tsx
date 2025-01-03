@@ -19,7 +19,7 @@ const Sidebar: React.FC = () => {
           </Link>
         </li>
         <li className={location.pathname === "/ProjectPage" ? "active" : ""}>
-          <Link to="/ProjectPage">
+          <Link to="/ProjectDashBoard">
             <FaTasks /> 프로젝트
           </Link>
         </li>

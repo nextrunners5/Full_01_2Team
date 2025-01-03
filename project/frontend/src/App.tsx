@@ -7,6 +7,9 @@ import ProtectedRoute from "./pages/protected-route/ProtectedRoute";
 import Mypage from "./pages/MyPage";
 import MyPageEdit from "./pages/MyPageEdit";
 import ProjectDashBoard from "./pages/ProjectDashBoard";
+import ProjectCreate from "./pages/ProjectCreate";
+import ProjectEdit from "./pages/ProjectEdit";
+import ProjectEachDetails from "./pages/ProjectEachDetails";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/SchedulePage" element={<SchedulePage />} />
           <Route path="/ProjectDashBoard" element={<ProjectDashBoard />} />
+          <Route path ="/ProjectCreate" element={<ProjectCreate/>}/>
+          <Route path="/ProjectEdit/:projectId" element={<ProjectEdit />} />
+          <Route path="/ProjectEachDetails/:projectId" element={<ProjectEachDetails />} />
           <Route path="/Mypage" element={<Mypage />} />
           <Route path="/MyPageEdit" element={<MyPageEdit />} />
         </Route>

@@ -1,0 +1,481 @@
+/* 아이콘 */
+.trashIcon{
+  width: 20px;
+  height: 20px;
+}
+
+.pencilIcon{
+  width: 20px;
+  height: 20px;
+}
+
+.taskDelete .trashIcon:hover{
+  fill: #444444;
+}
+
+/* 상태에 따른 색상 변경 */
+.progress{
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
+.complete{
+  background: #F0FDF4;
+  color: #16A34A;
+}
+
+.wait{
+  background: #FEFCE8;
+  color: #CA8A04;
+}
+
+/* 버튼 관련 css */
+.eachProjectModifyBtn{
+  justify-content: center;
+  align-items: center;
+}
+
+.ModifyBtnLink{
+  text-decoration: none;
+  color: white;
+}
+
+.modifyBtn{
+  display: flex;
+  width: 148.28px;
+  height: 35px;
+  align-items: center;
+  padding: 5px;
+  border-radius: 4px;
+  gap: 10px;
+  background: #6F42C1;
+  justify-content: center;
+  border: none;
+}
+
+.modifyBtn h3 {
+  color: white;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  text-align: center;
+}
+
+/* 플러스(input 추가) 버튼 */
+.addBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addBtn button{
+  width: 48px;
+  height: 26px;
+  border-radius: 4px;
+  border: none;
+  opacity: 1;
+  background: #6F42C1;
+  align-items: center;
+  padding: 0;
+}
+
+/* 작업추가 버튼 -> 눌러야 input 나옴 */
+.createTask{
+  display: flex;
+  justify-content:flex-end;
+}
+
+.createTask button{
+  height: 36px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  gap: 10px;
+  border: none;
+  opacity: 1;
+  background: #6F42C1;
+  display: flex;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  transition: all 0.5s ease;
+}
+
+.createTask button:hover{
+  cursor: pointer;
+  background-color: #8661ca;
+}
+
+/* css */
+body {
+  padding: 0;
+  margin: 0;
+  background: #F9FAFB;
+}
+
+.eachDetailsContainer {
+  display: flex;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+}
+
+.eachDetailsTop{
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 15px 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border-radius: 8px;
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+.eachProjectTitleContainer{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.eachProjectTitleTop{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.eachProjectTitle{
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 32px;
+  letter-spacing: 0px;
+  color: #111827;
+}
+
+.eachProjectImportant{
+  width: 95.61px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  opacity: 1;
+  background: #FEF9C3;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #854D0E;
+  text-align: center;
+}
+
+.eachProjectStatus{
+  display: flex;
+  flex-direction: column;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  opacity: 1;
+  background: #DCFCE7;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #166534;
+}
+
+.eachProjectTitleBottom{
+  display: flex;
+  gap: 30px;
+}
+
+.eachProjectStartDate, .eachProjectEndDate{
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #6B7280;
+}
+
+/* 중간-컨테이너 */
+.eachDetailsMid{
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 0px 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border-radius: 8px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+/* 중간-프로젝트 설명 */
+.eachDetailMidTitle{
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  color: #111827;
+}
+
+.eachProjectDescription{
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #4B5563;
+}
+
+/* 하단 */
+.eachDetailsBottom{
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 30px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  border-radius: 8px;
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+/* 하단-상태변경 */
+.selectContainer{
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.selectContainer .selectTitle{
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #374151;
+}
+
+.selectStatus select{
+  width: 250px;
+  height: 42px;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+}
+
+/* 작업 리스트 */
+.workListContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+
+/* 작업 리스트 상단 제목 */
+.workList{
+  display: flex;
+  align-items: center;
+  gap: 90px;
+}
+
+.workListData{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.workListMap{
+  display: flex;
+  align-items: center;
+  gap: 90px;
+  width: 100%;
+}
+
+.taskModify{
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.taskUpdate, .taskDelete{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskUpdate:hover, .taskDelete:hover {
+  cursor: pointer;
+}
+
+.registerList{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  gap: 90px;
+}
+
+.workListTitle, .titleData{
+  width: 230px;
+  height: 29px;
+}
+
+.titleData{
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #111827;
+}
+
+div.workListManager, 
+div.workListStartDate, 
+div.workListEndDate,
+div.workListStatus
+{
+  width: 101px;
+}
+
+.workList .workListTitle,
+.workListManager,
+.workListStartDate,
+.workListEndDate,
+.workListStatus
+{
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  color: #6B7280;
+}
+
+.statusDataDiv{
+  width: 49.13px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  border-radius: 9999px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
+
+.workListManager input, 
+.workListStartDate input, 
+.workListEndDate input{
+  width: 101px;
+  height: 29px;
+  padding: 8px 12px;
+}
+
+.registerList input{
+  border-radius: 6px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+.registerList select{
+  width: 103px;
+  height: 35px;
+  padding: 8px;
+  border-radius: 6px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+.workListMap .workListTitle input {
+  width: 230px;
+  height: 29px;
+  padding: 0;
+  border-radius: 6px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+
+/* 수정시 input CSS */
+.editData {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.editMap{
+  display: flex;
+  gap: 90px;
+  align-items: center;
+  width: 100%;
+}
+
+.editTitle input{ 
+  width: 230px;
+  height: 29px;
+  padding: 0;
+  border-radius: 6px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+.editManager input, .editStartDate input,
+.editEndDate input{
+  width: 101px;
+  height: 29px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+.editStatus select{
+  width: 103px;
+  height: 35px;
+  padding: 8px;
+  border-radius: 6px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
