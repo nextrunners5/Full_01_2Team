@@ -1,14 +1,5 @@
 import { RowDataPacket, createPool } from "mysql2";
-// import { pool } from "./dbConfig";
-
-const dbConfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-};
-
-const pool = createPool(dbConfig);
+import pool from "./dbConfig.js";
 
 // 공통 common_id 조회 함수
 export const getCommonId = (commonDetail: string): Promise<number> => {
@@ -27,10 +18,3 @@ export const getCommonId = (commonDetail: string): Promise<number> => {
   });
 };
 
-// 날짜 포맷 함수 (YYYYMMDD 형태로 변환)
-// export const formatDateToNumber = (date: Date): number => {
-//   const year = date.getFullYear();
-//   const month = String(date.getMonth() + 1).padStart(2, '0');
-//   const day = String(date.getDate()).padStart(2, '0');
-//   return Number(`${year}${month}${day}`);
-// };
