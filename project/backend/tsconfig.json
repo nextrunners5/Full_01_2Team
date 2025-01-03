@@ -9,6 +9,6 @@
     "rootDir": "./api",
     "outDir": "./dist",
     "typeRoots": ["./node_modules/@types", "./types"],
-    "types": ["node", "express"]
+    "types": ["node", "express"],
   }
 }

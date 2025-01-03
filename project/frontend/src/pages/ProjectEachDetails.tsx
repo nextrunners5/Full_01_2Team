@@ -67,7 +67,7 @@ const ProjectEachDetails: React.FC = () => {
   //add버튼 클릭시 입력폼 나타내기
   const [formVisible, setFormVisible] = useState(false)
   
-  //추가된 작업 목록 상태
+  //추가된 세부 일정 목록 상태
   const [taskList, setTaskList] = useState<TaskItem[]>([]);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const ProjectEachDetails: React.FC = () => {
         const response = await axios.get<TaskItem[]>(`http://localhost:3400/api/tasks/${projectId}`);
         setTaskList(response.data);
       } catch (err) {
-        console.error('작업 리스트를 가져오는 데 실패했습니다.', err);
+        console.error('세부 일정을 가져오는 데 실패했습니다.', err);
       }
     };
 

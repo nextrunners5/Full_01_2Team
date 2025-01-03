@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import "./ProjectCreate.css";
 import '../pages/ProjectCreate.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface Common{
   common_id: number;
@@ -18,6 +18,7 @@ export interface Project {
   endDate : string;
   manager : string;
   description: string;
+  // userId?: string;
 }
 
 interface ProjectFormProps {
@@ -30,23 +31,46 @@ interface ProjectFormProps {
 const ProjectForm: React.FC<ProjectFormProps> = ({project = {
   id: undefined,
   importance: '1',
-  status: '진행중',
-  type: '프로젝트',
+  status: '',
+  // status: '진행중',
+  // type: '프로젝트',
+  type: '',
   title: '',
   startDate: '',
   endDate: '',
   manager: '',
   description: '',
+  // userId: undefined,
 }, onSubmit, titleText, buttonText}) => { 
 
+  const navigate = useNavigate();
   const [status, setStatus] = useState<Common[]>([]);
   const [type, setType] = useState<Common[]>([]);
   const [formData, setFormData] = useState<Project>(project);
+  // const [user, setUser] = useState<string | null>(null);
+  
+  // 사용자 인증 확인
+  useEffect(() => {
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+    // const storedUserId = localStorage.getItem("userId") || sessionStorage.getItem("userId");
+
+    console.log(token);
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/LoginPage");
+    } 
+    // else {
+    //   const storedUserId = localStorage.getItem("userId") || sessionStorage.getItem("userId");
+    //   setUser(storedUserId);
+    //   // fetchProjects(storedUserId);
+    // }
+  }, [navigate]);
+
 
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const response = await axios.get<Common[]>('http://localhost:4000/api/commonStatus');
+        const response = await axios.get<Common[]>('http://localhost:3000/api/ProjectService/commonStatus');
         setStatus(response.data);
       } catch (err){
         console.error('상태 데이터를 불러오는 데 실패했습니다.',err);
@@ -55,7 +79,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({project = {
     
     const fetchType = async () => {
       try {
-        const response = await axios.get<Common[]>('http://localhost:4000/api/commonType');
+        const response = await axios.get<Common[]>('http://localhost:3000/api/ProjectService/commonType');
         setType(response.data);
       } catch (err){
         console.error('타입 데이터를 불러오는 데 실패했습니다.',err);
@@ -70,8 +94,8 @@ const ProjectForm: React.FC<ProjectFormProps> = ({project = {
     if (status.length > 0 && type.length > 0) {
       setFormData((prev) => ({
         ...prev,
-        status: status[0].common_detail,
-        type: type[0].common_detail,
+        status: prev.status || status[0].common_detail,
+        type: prev.type || type[0].common_detail,
       }));
     }
   }, [status, type]);

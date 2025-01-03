@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import "./ProjectCreate.css";
-import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import ProjectForm, { Project } from '../components/ProjectForm';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Headar';
+import axiosInstance from './axios/ProjectAxios';
 
 const ProjectEdit: React.FC = () => {
   const navigate = useNavigate();
@@ -16,8 +16,7 @@ const ProjectEdit: React.FC = () => {
     console.log("projectId: ", projectId);
     const fetchProject = async () => {
       try{
-        
-        const response = await axios.get<Project>(`http://localhost:4000/api/projectService/${projectId}`);
+        const response = await axiosInstance.get<Project>(`/api/projectService/projectEdit/${projectId}`);
         console.log("response.data:",response.data);
 
         setProject(response.data);
@@ -32,10 +31,10 @@ const ProjectEdit: React.FC = () => {
 
   const handleUpdateProject = async (project: Project) => {
     try {
-      const response = await axios.put(`http://localhost:4000/api/projectService/${projectId}`, project);
+      const response = await axiosInstance.put(`/api/projectService/projectEdit/${projectId}`, project);
       console.log('프로젝트 수정 성공: ', response.data);
       alert('프로젝트가 수정되었습니다.');
-      navigate('/');
+      navigate(`/ProjectEachDetails/${projectId}`);
     } catch(error){
       console.error('프로젝트 수정 실패: ', error);
       alert('프로젝트 수정에 실패했습니다.');

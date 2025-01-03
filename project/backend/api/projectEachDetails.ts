@@ -7,6 +7,7 @@ import { getCommonId } from "./dbUtils.js";
 
 const router = Router();
 
+
 //Common 테이블에서 프로젝트 상태 값 가져오기
 router.get('/api/tasks/Status', (req: Request, res: Response ) => {
   const query = "select common_detail from Common where common_id IN (1,2,3)";
@@ -65,7 +66,7 @@ router.get('/api/tasks/ProjectEachDetails/:projectId', (req: Request, res: Respo
 });
 
 
-//각 프로젝트 별 세부 내용 추가 API
+//각 프로젝트 별 세부 작업 추가 API
 router.post('/api/tasks', async (req: Request, res: Response) => {
   // const projectId = req.params.projectId;
   console.log(req.body);
@@ -262,3 +263,5 @@ router.get('/api/tasks/filter/:projectId/:value', async(req: Request, res: Respo
     res.status(500).send('선택된 상태 일정 값 보여주기 실패');
   }
 })
+
+export default router;
