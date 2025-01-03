@@ -4,13 +4,18 @@ config();  // 환경 변수 로드
 import { Request, Response, Router } from "express";
 import { createPool, RowDataPacket } from "mysql2";
 import pool from "./dbConfig.js"
+import { authenticateToken } from './middleware/authMiddleware.js';
 
 const router = Router();
 
-const countProjectsByStatus = (status: number): Promise<number> => {
+interface AuthenticatedRequest extends Request {
+  user?: { user_id: string; iat: number; exp: number; };
+}
+
+const countProjectsByStatus = (status: number, user_id: string): Promise<number> => {
   return new Promise((resolve, reject) => {
-    const query = "SELECT count(project_status) AS count FROM Project WHERE project_status = ?";
-    pool.query(query, [status], (err, results: RowDataPacket[]) => {
+    const query = "SELECT count(project_status) AS count FROM Project WHERE project_status = ? AND user_id = ?";
+    pool.query(query, [status, user_id], (err, results: RowDataPacket[]) => {
       if (err) {
         return reject('프로젝트 상태별 수를 가져오는 데 실패했습니다.');
       }
@@ -22,9 +27,12 @@ const countProjectsByStatus = (status: number): Promise<number> => {
 
 ////Project 테이블에서 project_status 별 갯수 계산하기
 //총 프로젝트 수
-router.get('/api/ProjectDashBoard/ProjectAll', async(req: Request, res: Response)=>{
-  const query = "select count(project_status) as count from Project";
-  pool.query(query, (err, results) => {
+router.get('/ProjectAll', authenticateToken, async(req: Request, res: Response)=>{
+  const {user_id} = req.user!;
+  console.log("user_id:", user_id);
+
+  const query = "select count(project_status) as count from Project where user_id = ?";
+  pool.query(query, [user_id], (err, results) => {
     if(err){
       console.log('총 프로젝트 수 가져오기 실패');
       return res.status(500).send('총 프로젝트 수 가져오기 실패');
@@ -42,9 +50,14 @@ router.get('/api/ProjectDashBoard/ProjectAll', async(req: Request, res: Response
 });
 
 //진행 중인 프로젝트 수
-router.get('/api/ProjectDashBoard/ProjectProgress', async(req: Request, res: Response)=>{
+router.get('/ProjectProgress', authenticateToken, async(req: Request, res: Response)=>{
   try{
-    const count = await countProjectsByStatus(1);
+    const user_id = req.user?.user_id
+    if (!user_id) {
+      return res.status(400).send('유효하지 않은 사용자입니다.');
+    }
+    console.log("user_id:", req.user?.user_id);
+    const count = await countProjectsByStatus(1, user_id);
     res.send(count.toString());
     console.log("count: ", count);
   } catch(err){
@@ -54,9 +67,13 @@ router.get('/api/ProjectDashBoard/ProjectProgress', async(req: Request, res: Res
 });
 
 //대기 중인 프로젝트 수
-router.get('/api/ProjectDashBoard/ProjectWait', async(req: Request, res: Response)=>{
+router.get('/ProjectWait', authenticateToken, async(req: Request, res: Response)=>{
   try{
-    const count = await countProjectsByStatus(2);
+    const user_id = req.user?.user_id
+    if (!user_id) {
+      return res.status(400).send('유효하지 않은 사용자입니다.');
+    }
+    const count = await countProjectsByStatus(2, user_id);
     res.send(count.toString());
     console.log("count: ", count);
   } catch(err){
@@ -66,9 +83,13 @@ router.get('/api/ProjectDashBoard/ProjectWait', async(req: Request, res: Respons
 });
 
 //완료된 프로젝트 수
-router.get('/api/ProjectDashBoard/ProjectComplete', async(req: Request, res: Response)=>{
+router.get('/ProjectComplete', authenticateToken, async(req: Request, res: Response)=>{
   try{
-    const count = await countProjectsByStatus(3);
+    const user_id = req.user?.user_id
+    if (!user_id) {
+      return res.status(400).send('유효하지 않은 사용자입니다.');
+    }
+    const count = await countProjectsByStatus(3, user_id);
     res.send(count.toString());
     console.log("count: ", count);
   } catch(err){
@@ -78,19 +99,22 @@ router.get('/api/ProjectDashBoard/ProjectComplete', async(req: Request, res: Res
 });
 
 //유저의 프로젝트 리스트
-router.get('/api/ProjectDashBoard/ProjectData/:userId', async(req: Request, res: Response) => {
-  // const userId = 'user123';
-  const userId = req.params.userId;
-  console.log("userId : ", userId);
+router.get('/ProjectData', authenticateToken, async(req: Request, res: Response) => {
+  // const user_id = '1234';
+  // const userId = req.params.userId;
 
-  if (!userId) {
+  const user_id = req.user?.user_id!;
+  // const user_id = req.query.user_id as string;
+  console.log("프로젝트 리스트 userId : ", user_id);
+
+  if (!user_id) {
     console.error('유저 ID가 존재하지 않습니다.');
     return res.status(400).send('유저 ID가 존재하지 않습니다.');
   }
 
   const query = "select project_id, project_title, project_details, project_status, project_endDate from Project where user_id = ?";
 
-  pool.query(query, [userId], (err, results: RowDataPacket[]) => {
+  pool.query(query, [user_id], (err, results: RowDataPacket[]) => {
     if(err) {
       console.error('유저의 프로젝트 정보를 가져오는 데 실패했습니다.', err);
       return res.status(500).send('프로젝트 정보 가져오기 실패');
@@ -107,9 +131,11 @@ router.get('/api/ProjectDashBoard/ProjectData/:userId', async(req: Request, res:
 });
 
 // 우선순위가 1순위인 프로젝트 상위 5개 가져오기
-router.get('/api/ProjectDashBoard/ImportanceProject', (req: Request, res: Response) => {
-  const query = "select project_title, project_endDate from Project where project_rank = 1 order by project_rank limit 5";
-  pool.query(query, (err, results: RowDataPacket[]) => {
+router.get('/ImportanceProject', authenticateToken, (req: Request, res: Response) => {
+  const user_id = req.user?.user_id;
+  console.log("우선순위 user_id : ", user_id);
+  const query = "select project_title, project_endDate from Project where user_id = ? and project_rank = 1 order by project_rank limit 5";
+  pool.query(query, [user_id],(err, results: RowDataPacket[]) => {
     if(err) {
       console.error("프로젝트 우선순위에 따른 데이터를 가져오지 못했습니다.",err);
       return res.status(500).send('우선순위가 높은 프로젝트 가져오기 실패');
@@ -129,8 +155,9 @@ router.get('/api/ProjectDashBoard/ImportanceProject', (req: Request, res: Respon
 });
 
 //상태값 별 프로젝트 가져오기
-router.get('/api/ProjectDashBoard/ProjectData/:statusName', async (req: Request,res: Response) => {
+router.get('/ProjectData/:statusName', authenticateToken, async (req: Request,res: Response) => {
   const project_status = req.params.statusName;
+  const user_id = req.user?.user_id!;
   // const query = "select project_id, project_title, project_details, project_status, project_endDate from Project where project_status = ?";
   console.log(project_status);
 
@@ -148,8 +175,8 @@ router.get('/api/ProjectDashBoard/ProjectData/:statusName', async (req: Request,
           return resolve(results[0].common_id)
         } else {
           // return reject(new Error("common_id를 찾을 수 없습니다."));
-          const query = "select project_id, project_title, project_details, project_status, project_endDate from Project";
-          pool.query(query, (err, results: RowDataPacket[]) => {
+          const query = "select project_id, project_title, project_details, project_status, project_endDate from Project where user_id = ?";
+          pool.query(query, [user_id], (err, results: RowDataPacket[]) => {
             if(err) {
               console.error('유저의 프로젝트 정보를 가져오는 데 실패했습니다.', err);
               return res.status(500).send('프로젝트 정보 가져오기 실패');
@@ -172,8 +199,8 @@ router.get('/api/ProjectDashBoard/ProjectData/:statusName', async (req: Request,
     const statusCommonId = await getCommonId(project_status);
 
     //DB에 select 쿼리 날리기
-    const query = "select project_id, project_title, project_details, project_status, project_endDate from Project where project_status = ?";
-    pool.query(query, [statusCommonId], (err,results: RowDataPacket[]) => {
+    const query = "select project_id, project_title, project_details, project_status, project_endDate from Project where user_id = ? and project_status = ?";
+    pool.query(query, [user_id, statusCommonId], (err,results: RowDataPacket[]) => {
       if(err){
         console.log("쿼리 결과: ", results);
         return res.status(500).send('선택된 상태 일정 값 보여주기 실패');
@@ -193,19 +220,21 @@ router.get('/api/ProjectDashBoard/ProjectData/:statusName', async (req: Request,
 });
 
 //프로젝트 삭제
-router.delete('/api/ProjectDashBoard/ProjectService/:projectId', (req: Request, res: Response) => {
+router.delete('/ProjectDelete/:projectId', authenticateToken,(req: Request, res: Response) => {
   const {projectId} = req.params;
-  const {userId} = req.body;
+  // const {userId} = req.body;
+  const user_id = req.user?.user_id;
+  // const {user_id} = req.user!;
+  console.log("삭제 요청 user_id:",user_id);
   console.log("삭제요청 projectId:", projectId);
   const query = "delete from Project where project_id = ? and user_id = ?";
-  console.log(query);
 
-  pool.query(query, [projectId, userId], (err, results) => {
+  pool.query(query, [projectId, user_id], (err, results) => {
     if(err) {
       console.error('프로젝트 삭제 실패', err);
       return res.status(500).send('프로젝트 삭제 실패');
     }
-    
+    console.log("delete results: ",results);
     res.json(results);
   });
   console.log('프로젝트 삭제 성공');

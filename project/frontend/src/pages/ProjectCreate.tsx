@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import "./ProjectCreate.css";
-import axios from 'axios';
+// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ProjectForm, { Project } from '../components/ProjectForm';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Headar';
+import axiosInstance from './axios/ProjectAxios';
 
 const ProjectCreate: React.FC = () => {
   const navigate = useNavigate();
 
   const handleCreateProject = async (project: Project) => {
     try {
-      const response = await axios.post("http://localhost:4000/api/projectService", project);
+      const response = await axiosInstance.post("/api/projectService/projectCreate", project);
       console.log('프로젝트 추가 성공: ', response.data);
       alert('프로젝트가 추가되었습니다.');
-      navigate('/');
+      navigate('/ProjectDashBoard');
     } catch(error){
+      console.log("project:", project);
       console.error('프로젝트 추가 실패: ', error);
       alert('프로젝트 추가에 실패했습니다.');
     }

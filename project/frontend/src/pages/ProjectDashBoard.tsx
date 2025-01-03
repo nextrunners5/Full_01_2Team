@@ -2,7 +2,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import "./ProjectDashBoard.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "./axios/ProjectAxios";
 
 //icon
 import { FaListCheck } from "react-icons/fa6";
@@ -13,6 +13,7 @@ import { LuPlus } from "react-icons/lu";
 import { MdDelete } from "react-icons/md";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Headar";
+
 
 interface Project{
   project_id: number;
@@ -44,13 +45,13 @@ const ProjectDashBoard: React.FC = () => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const responseAll = await axios.get<number>('http://localhost:3000/api/ProjectDashBoard/ProjectAll');
+        const responseAll = await axiosInstance.get<number>('/api/ProjectDashBoard/ProjectAll');
         setAll(responseAll.data);
-        const responseProgress = await axios.get<number>('http://localhost:3000/api/ProjectDashBoard/ProjectProgress');
+        const responseProgress = await axiosInstance.get<number>('/api/ProjectDashBoard/ProjectProgress');
         setProgress(responseProgress.data);
-        const responseWait = await axios.get<number>('http://localhost:3000/api/ProjectDashBoard/ProjectWait');
+        const responseWait = await axiosInstance.get<number>('/api/ProjectDashBoard/ProjectWait');
         setWait(responseWait.data);
-        const responseComplete = await axios.get<number>('http://localhost:3000/api/ProjectDashBoard/ProjectComplete');
+        const responseComplete = await axiosInstance.get<number>('/api/ProjectDashBoard/ProjectComplete');
         setComplete(responseComplete.data);
       } catch(err){
         console.error('모든 프로젝트 값을 가져오는 데 실패했습니다.', err);
@@ -59,52 +60,50 @@ const ProjectDashBoard: React.FC = () => {
     fetchStatus();
   },[]);
 
-  const [userId, setUserId] = useState<string | null>(null)
+  // const [userId, setUserId] = useState<string | null>(null)
   // 사용자 인증 확인
   useEffect(() => {
     const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     if (!token) {
       alert("로그인이 필요합니다.");
       navigate("/LoginPage");
-    } else {
-      const storedUserId = localStorage.getItem("userId") || sessionStorage.getItem("userId");
-      setUserId(storedUserId);
-      // fetchProjects(storedUserId);
     }
   }, [navigate]);
 
   //유저의 모든 프로젝트 가져오기
   const [describe, setDescribe] = useState<Project[]>([]);
-  const fetchProjects = async (userId: string | null) => {
-    if(userId) {
-      try{
-        const response = await axios.get<Project[]>(`http://localhost:3000/api/ProjectDashBoard/ProjectData/${userId}`);
-        setDescribe(response.data);
-        console.log(response.data);
-      } catch(err){
-        console.error('프로젝트 정보를 가져오는 데 실패했습니다.', err);
-      }
-    }
-  }
-
-  useEffect(() => {
-    if (userId) {
-      fetchProjects(userId);
-    }
-  }, [userId]);
-
-  // useEffect(()=> {
-  //   const fetchProjects = async (userId: string | null) => {
-  //     try {
-  //       const response = await axios.get<Project[]>(`http://localhost:3000/api/ProjectDashBoard/ProjectData/${userId}`);
+  // const fetchProjects = async (userId: string | null) => {
+  //   if(userId) {
+  //     try{
+  //       // const response = await axiosInstance.get<Project[]>(`/api/ProjectDashBoard/ProjectData/${userId}`);
+  //       const response = await axiosInstance.get<Project[]>(`/api/ProjectDashBoard/ProjectData`, {params: {user_id : userId}});
   //       setDescribe(response.data);
   //       console.log(response.data);
-  //     } catch (err) {
-  //       console.error('프로젝트 정보를 가져오는 데 실패했습니다.',err);
+  //     } catch(err){
+  //       console.error('프로젝트 정보를 가져오는 데 실패했습니다.', err);
   //     }
-  //   };
-  //   // fetchProjects();
-  // },[]);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (userId) {
+  //     fetchProjects(userId);
+  //   }
+  // }, [userId]);
+
+  useEffect(()=> {
+    const fetchProjects = async () => {
+      try {
+        const response = await axiosInstance.get<Project[]>(`/api/ProjectDashBoard/ProjectData`);
+        // setDescribe(response.data);
+        setDescribe(Array.isArray(response.data) ? response.data : []);
+        console.log(response.data);
+      } catch (err) {
+        console.error('프로젝트 정보를 가져오는 데 실패했습니다.',err);
+      }
+    };
+    fetchProjects();
+  },[]);
 
 
   //중요도에 따른 프로젝트
@@ -113,7 +112,7 @@ const ProjectDashBoard: React.FC = () => {
   useEffect(()=> {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get<ImportantProject[]>('http://localhost:3000/api/ProjectDashBoard/ImportanceProject');
+        const response = await axiosInstance.get<ImportantProject[]>('/api/ProjectDashBoard/ImportanceProject');
         setImportant(response.data);
       } catch (err) {
         console.error('중요도에 따른 프로젝트를 가져오지 못했습니다.', err);
@@ -126,7 +125,7 @@ const ProjectDashBoard: React.FC = () => {
   //각 상태 클릭시 해당 값만 리스트
   const handleChangeProject = async (statusName: string) => {
     try{
-      const response = await axios.get(`http://localhost:3000/api/ProjectDashBoard/ProjectData/${statusName}`);
+      const response = await axiosInstance.get(`/api/ProjectDashBoard/ProjectData/${statusName}`);
       setDescribe(response.data);
       console.log(response.data);
     } catch(err){
@@ -149,12 +148,12 @@ const ProjectDashBoard: React.FC = () => {
     if(!confirmDelete) return;
 
     try{
-      await axios.delete(`http://localhost:3000/api/ProjectDashBoard/ProjectService/${projectId}`, {data: userId});
+      await axiosInstance.delete(`/api/ProjectDashBoard/ProjectDelete/${projectId}`);
       setDescribe((prev) => prev.filter(describe => describe.project_id !== projectId));
 
       alert('작업이 삭제되었습니다.');
 
-      navigate('/');
+      navigate('/ProjectDashBoard');
     } catch(err){
       console.error('삭제에 실패했습니다.', err);
       alert('삭제에 실패했습니다.');

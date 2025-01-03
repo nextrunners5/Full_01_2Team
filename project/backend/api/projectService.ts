@@ -6,11 +6,17 @@ import { createPool, RowDataPacket } from "mysql2";
 import { getCommonId } from "./dbUtils.js";
 import { formatDateToNumber } from "./utils.js"
 import pool from "./dbConfig.js"
+import { authenticateToken } from './middleware/authMiddleware.js';
 
 const router = Router();
 
+// 유저 ID 타입 정의
+interface AuthenticatedRequest extends Request {
+  user?: { user_id: string; iat: number; exp: number; };
+}
+
 //Common 테이블에서 프로젝트 상태 데이터 가져오기
-router.get('/api/commonStatus', (req: Request,res: Response) => {
+router.get('/commonStatus', (req: Request,res: Response) => {
   const query = "select common_detail from Common where common_id IN (1,2,3)";
   pool.query(query, (err, results) => {
     if(err){
@@ -25,7 +31,7 @@ router.get('/api/commonStatus', (req: Request,res: Response) => {
 });
 
 //Common 테이블에서 프로젝트 타입 데이터 가져오기
-router.get('/api/commonType', (req: Request,res: Response) => {
+router.get('/commonType', (req: Request,res: Response) => {
   const query = "select common_detail from Common where common_id IN (4,5,6)";
   pool.query(query, (err, results) => {
     if(err){
@@ -40,10 +46,11 @@ router.get('/api/commonType', (req: Request,res: Response) => {
 });
 
 //프로젝트 추가 API
-router.post('/api/projectService', async(req,res)=>{
-  console.log(req.body);
-  const {importance, status, type, title, startDate, endDate, manager, description, userId} = req.body;
-  console.log("user_ID: ", userId);
+router.post('/projectCreate', authenticateToken, async(req,res)=>{
+  const {user_id} = req.user!;
+  console.log("user_ID: ", user_id);
+  const {importance, status, type, title, startDate, endDate, manager, description} = req.body;
+  
   console.log(typeof startDate);
   console.log(startDate);
 
@@ -68,7 +75,7 @@ router.post('/api/projectService', async(req,res)=>{
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
     const values = [
-      userId, statusCommonId, typeCommonId, title,
+      user_id, statusCommonId, typeCommonId, title,
       description, importanceNumber, formattedStartDate,
       formattedEndDate, manager
     ];
@@ -89,12 +96,14 @@ router.post('/api/projectService', async(req,res)=>{
 });
 
 //프로젝트 수정 - 데이터 가져오기
-router.get('/api/projectService/:projectId', async(req: Request, res:Response) => {
+router.get('/projectEdit/:projectId', authenticateToken, async(req: Request, res:Response) => {
+  const {user_id} = req.user!;
+  console.log("수정 요청 user_id:", user_id);
   const projectId = req.params.projectId;
   console.log("프로젝트 수정: ",projectId);
-  const query = 'select project_rank, project_type, project_status, project_title, project_startDate, project_endDate, project_manager, project_details from Project where project_id = ?';
+  const query = 'select project_rank, project_type, project_status, project_title, project_startDate, project_endDate, project_manager, project_details from Project where user_id = ? and project_id = ?';
 
-  pool.query(query, [projectId], (err, results:RowDataPacket[]) => {
+  pool.query(query, [user_id, projectId], (err, results:RowDataPacket[]) => {
     if (err) {
       console.error('프로젝트 데이터를 가져오는 데 실패했습니다.', err);
       return res.status(500).send('프로젝트 데이터를 가져오는 데 실패했습니다.');
@@ -136,7 +145,9 @@ router.get('/api/projectService/:projectId', async(req: Request, res:Response) =
 })
 
 //프로젝트 수정 - 수정
-router.put('/api/projectService/:projectId', async(req: Request, res:Response) => {
+router.put('/projectEdit/:projectId', authenticateToken, async(req: Request, res:Response) => {
+  const {user_id} = req.user!;
+  console.log("수정 user_id:", user_id);
   console.log("프로젝트 수정 요청: ", req.body);
   const projectId = req.params.projectId;
   const {importance, status, type, title, startDate, endDate, manager, description} = req.body;
@@ -152,9 +163,9 @@ router.put('/api/projectService/:projectId', async(req: Request, res:Response) =
     const query = 
         `update Project
             set project_rank = ?, project_status = ?, project_type = ?, project_title = ?, project_startDate = ?, project_endDate = ?, project_manager = ?, project_details = ?
-            where project_id = ?`;
+            where user_id = ? and project_id = ?`;
     const values = [
-      importance, statusCommonId, typeCommonId, title, project_startDate, project_endDate, manager, description, project_id
+      importance, statusCommonId, typeCommonId, title, project_startDate, project_endDate, manager, description, user_id, project_id
     ];
 
     console.log("실행된 쿼리: ", query, values);
