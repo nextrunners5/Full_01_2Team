@@ -129,7 +129,14 @@ body {
   flex: 1;
 }
 
-.main{
+/* .main{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+} */
+
+.eachDetailMain{
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -335,6 +342,11 @@ body {
 .registerList{
   display: flex;
   gap: 20px;
+}
+
+.registerListForm{
+  display: flex;
+  /* gap: 20px; */
   align-items: center;
   width: 100%;
   gap: 90px;
@@ -479,3 +491,4 @@ div.workListStatus
   border: 1px solid #D1D5DB;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 }
+

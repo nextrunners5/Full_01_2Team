@@ -14,18 +14,43 @@ body {
   flex-direction: row;
 } */
 
+/* .mainContent {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+} */
+
+.mainContent.expanded{
+  margin-left: 0;
+}
+
 .mainContent {
+  width: 80%;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.main{
+.mainDiv{
+  /* width: 100%; */
+  /* display: flex;
+  justify-content: center;
+  overflow: hidden; */
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /* padding: 30px; */
+  /* padding: 50px; */
+}
 
+.main{
+  /* max-width: 1300px; */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
 }
 
 .projectDashBoardTitle h1 {
@@ -43,9 +68,10 @@ body {
 .bigCurrentBoard {
   display: flex;
   gap: 20px;
-  /* width: 100%; */
   align-items: center;
   justify-content: space-between;
+  transform: translateY(25px);
+  animation: fadeInUp 1s forwards 0.5s;
 }
 
 .numberBox {
@@ -54,20 +80,20 @@ body {
   display: flex;
   flex-direction: column;
   padding: 24px;
-  /* gap: 0px 15px; */
   gap: 20px;
   flex-wrap: wrap;
   align-content: flex-start;
-  /* align-items: center; */
   justify-content: center;
   border-radius: 8px;
   opacity: 1;
+  transition: transform 0.3s;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
   box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1),0px 1px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
 .numberBox:hover {
   cursor: pointer;
+  transform: translateY(-20px);
 }
 
 .numberTitle {
@@ -91,6 +117,8 @@ body {
   justify-content: center;
   border-radius: 8px;
   opacity: 1;
+  transform: translateY(25px);
+  animation: fadeInUp 1s forwards 0.5s;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
   box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1),0px 1px 3px 0px rgba(0, 0, 0, 0.1);
 }
@@ -200,7 +228,7 @@ body {
 }
 
 .smallStatus {
-  /* width: 54.64px; */
+  width: 50px;
   height: 28px;
   text-align: center;
   border-radius: 4px;
@@ -243,7 +271,8 @@ body {
 
 .bottom1 {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: end;
   align-items: center;
 }
 

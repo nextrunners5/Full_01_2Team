@@ -10,6 +10,7 @@ import ProjectDashBoard from "./pages/ProjectDashBoard";
 import ProjectCreate from "./pages/ProjectCreate";
 import ProjectEdit from "./pages/ProjectEdit";
 import ProjectEachDetails from "./pages/ProjectEachDetails";
+import MainDashBoard from "./pages/MainDashBoard";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
 
         {/* 보호 페이지 */}
         <Route element={<ProtectedRoute />}>
+          <Route path="/MainDashBoard" element={<MainDashBoard />} />
           <Route path="/SchedulePage" element={<SchedulePage />} />
           <Route path="/ProjectDashBoard" element={<ProjectDashBoard />} />
           <Route path ="/ProjectCreate" element={<ProjectCreate/>}/>

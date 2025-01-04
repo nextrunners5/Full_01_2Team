@@ -1,0 +1,224 @@
+.mainDashBoardContainer {
+  display: flex;
+}
+
+.mainContent{
+  /* gap: 20px; */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mainBody{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px 200px;
+  padding: 50px;
+}
+
+.projectStatusBox{
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.projectStatusBox .numberBox{
+  cursor: default;
+}
+
+.progressIconDiv{
+  width: 46.5px;
+  height: 52px;
+  border-radius: 9999px;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.completeIconDiv{
+  width: 46.5px;
+  height: 52px;
+  border-radius: 9999px;
+  opacity: 1;
+  background: #DCFCE7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waitIconDiv{
+  width: 46.5px;
+  height: 52px;
+  border-radius: 9999px;
+  opacity: 1;
+  background: #FEF9C3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projectBody{
+  display: flex;
+  flex-direction: column;
+  padding: 20px 50px;
+  border-radius: 8px;
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1),0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.topBox{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.topTitle{
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0px;
+  color: #111827;
+}
+
+.topRight{
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.listBtnLink{
+  text-decoration: none;
+}
+
+.projectDashBtn{
+  display: flex;
+  width: 148.28px;
+  height: 35px;
+  align-items: center;
+  padding: 5px;
+  border-radius: 4px;
+  gap: 25px;
+  background: #6F42C1;
+  justify-content: center;
+  border: none;
+}
+
+.projectDashBtn h3 {
+  color: white;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  text-align: center;
+}
+
+.modifyIcon{
+  fill: white;
+  width: 20px;
+  height: 20px;
+
+}
+
+.bottomBox{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  justify-content: space-between;
+  padding: 20px;
+  gap: 30px;
+}
+
+.projectListBody{
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid #E5E7EB;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recentProjectTitle{
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.statusAndType{
+  display: flex;
+  gap: 10px;
+}
+
+.bottomDateBox {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+/* 한 줄로 배치 */
+@media (max-width: 1370px) {
+  .bottomBox {
+    grid-template-columns: 1fr;  
+  }
+}
+
+.statusColor, .typeColor{
+  width: 49.13px;
+  height: 24px;
+  text-align: center;
+  border-radius: 9999px;
+  padding: 4px 8px;
+  opacity: 1;
+  align-content: center;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+}
+
+/* 상태에 따른 색상 변경 */
+.statusProgress{
+  background: #DBEAFE;
+  color: #1E40AF;
+}
+
+.statusComplete{
+  background: #F0FDF4;
+  color: #16A34A;
+}
+
+.statusWait{
+  background: #FEFCE8;
+  color: #CA8A04;
+}
+
+.typeProject{
+  background: #76affa;
+  color: #000000;
+}
+
+.typePresentation{
+  background: #7affa2;
+  color: #000000;
+}
+
+.typeReport{
+  background: #CFF46F;
+  color: #000000;
+}
+
+.scheduleBody {
+  border-radius: 8px;
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.001), rgba(0, 0, 0, 0.001)), #FFFFFF;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1),0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+}

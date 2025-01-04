@@ -172,83 +172,85 @@ const ProjectDashBoard: React.FC = () => {
         <div className={`sidebar ${isSidebarVisible ? "" : "hidden"}`}>
           <Sidebar />
         </div>
+        {/* <div className={`mainContent ${isSidebarVisible ? "" : "expanded"}`}> */}
         <div className={`mainContent ${isSidebarVisible ? "" : "expanded"}`}>
-          <Header onLogoClick={handleLogoClick} />
-          <div className="main">
-            <div className="projectDashBoardTitle">
-              <h1>프로젝트 대시보드</h1>  
-            </div>
-            <div className="bigCurrentBoard">
-              {projectStatusData.map((status, index) => (
-                <div className="numberBox" key={index} onClick={() => handleChangeProject(status.title)}>
-                  <div className={`${status.name.toLowerCase()}Icon`}>
-                    {status.icon}
-                  </div>
-                  <div className="rightText">
-                    <h3 className="numberTitle">{status.title}</h3>
-                    <h3 className={`${status.name.toLowerCase()}Number1`}>
-                      {status.value !== null ? status.value : 0}
-                    </h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="projectDetailContainer">
-              <div className="topProjectDetailContainer">
-              <div className="left">
-                <div className="recentProjectContainer">
-                  <div className="recentProjectTitle">
-                    <h2>최근 프로젝트</h2>
-                  </div>
-                  {describe.map((describe) => (
-                    <div className="eachProjectContainer">
-                      <div className="recentProjectBody" key={describe.project_title}>
-                      <Link to= {`/ProjectEachDetails/${describe.project_id}`} className="detailProject">
-                        <div className="recentProjectEachTitle">
-                          <h3 className="title">{describe.project_title}</h3>
-                          <div className={`smallStatus ${statusClassName[describe.project_status]}`}>{describe.project_status}</div>
-                        </div>
-                        <div className="projectDescribe">{describe.project_details}</div>
-                        <div className="bottom1">
-                          <div className="bottom2">진행률</div>
-                          <div className="bottom2">마감일 {describe.project_endDate}</div>
-                        </div>
-                        <div className="projectDelete" ><MdDelete className="trashIcon" onClick={() => handleDeleteProject(describe.project_id)}/></div>
-                      </Link>
-                      </div>
+          <Header onLogoClick={handleLogoClick}/>
+          <div className="mainDiv">
+            <div className="main">
+              <div className="projectDashBoardTitle">
+                <h1>프로젝트 대시보드</h1>  
+              </div>
+              <div className="bigCurrentBoard">
+                {projectStatusData.map((status, index) => (
+                  <div className="numberBox" key={index} onClick={() => handleChangeProject(status.title)}>
+                    <div className={`${status.name.toLowerCase()}Icon`}>
+                      {status.icon}
                     </div>
-
-                  ))}
-                </div>
+                    <div className="rightText">
+                      <h3 className="numberTitle">{status.title}</h3>
+                      <h3 className={`${status.name.toLowerCase()}Number1`}>
+                        {status.value !== null ? status.value : 0}
+                      </h3>
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              {/* body 오른쪽 */}
-              <div className="right">
-                <div className = "projectCreateBtn">
-                      {/* <Link to={'/ProjectDetails'} className="createBtnLink"> */}
-                      <Link to={'/ProjectCreate'} className="createBtnLink">
-                        <div className="purpleBtn">
-                          <LuPlus className="plusIcon"/>
-                          <h3>프로젝트 추가하기</h3>
+              <div className="projectDetailContainer">
+                <div className="topProjectDetailContainer">
+                <div className="left">
+                  <div className="recentProjectContainer">
+                    <div className="recentProjectTitle">
+                      <h2>최근 프로젝트</h2>
+                    </div>
+                    {describe.map((describe) => (
+                      <div className="eachProjectContainer">
+                        <div className="recentProjectBody" key={describe.project_title}>
+                        <Link to= {`/ProjectEachDetails/${describe.project_id}`} className="detailProject">
+                          <div className="recentProjectEachTitle">
+                            <h3 className="title">{describe.project_title}</h3>
+                            <div className={`smallStatus ${statusClassName[describe.project_status]}`}>{describe.project_status}</div>
+                          </div>
+                          <div className="projectDescribe">{describe.project_details}</div>
+                          <div className="bottom1">
+                            {/* <div className="bottom2">진행률</div> */}
+                            <div className="bottom2">마감일 {describe.project_endDate}</div>
+                          </div>
+                          <div className="projectDelete" ><MdDelete className="trashIcon" onClick={() => handleDeleteProject(describe.project_id)}/></div>
+                        </Link>
                         </div>
-                      </Link>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="smallCurrentBoard">
-                  <h2 className="smallCurrentBoardText">프로젝트 중요도</h2>
-                  {important.map((important) => (
-                    <div className="ImportantPlan">
-                      <h3 className="ImportantTitle">{important.project_title}</h3>
-                      <h3 className="importantDate">{important.project_endDate}</h3>
-                    </div>  
-                  ))}
+
+                {/* body 오른쪽 */}
+                <div className="right">
+                  <div className = "projectCreateBtn">
+                        {/* <Link to={'/ProjectDetails'} className="createBtnLink"> */}
+                        <Link to={'/ProjectCreate'} className="createBtnLink">
+                          <div className="purpleBtn">
+                            <LuPlus className="plusIcon"/>
+                            <h3>프로젝트 추가하기</h3>
+                          </div>
+                        </Link>
+                  </div>
+                  <div className="smallCurrentBoard">
+                    <h2 className="smallCurrentBoardText">프로젝트 중요도</h2>
+                    {important.map((important) => (
+                      <div className="ImportantPlan">
+                        <h3 className="ImportantTitle">{important.project_title}</h3>
+                        <h3 className="importantDate">{important.project_endDate}</h3>
+                      </div>  
+                    ))}
+                  </div>
                 </div>
-              </div>
-              </div>
-              <div className="bottomProjectDetailContainer">
-                  <Link to={'/DashBoard'} className="backBtnLink">
-                          <h3>메인 대시보드로 돌아가기</h3>
-                  </Link>
+                </div>
+                <div className="bottomProjectDetailContainer">
+                    <Link to={'/MainDashBoard'} className="backBtnLink">
+                            <h3>메인 대시보드로 돌아가기</h3>
+                    </Link>
+                </div>
               </div>
             </div>
           </div>

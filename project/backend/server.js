@@ -8,6 +8,7 @@ import userRouter from './dist/userService.js';
 import projectServiceRouter from './dist/projectService.js';
 import projectDashBoardRouter from './dist/projectDashBoard.js';
 import projectEachDetailsRouter from './dist/projectEachDetails.js';
+import mainDashBoardRouter from './dist/mainDashBoard.js';
 // 환경 변수 설정
 
 
@@ -24,6 +25,9 @@ app.use(morgan('dev'));
 app.get('/', (req, res) => {
   res.send('서버가 정상적으로 실행 중입니다!');
 });
+
+// 메인 API 라우터
+app.use('/api/MainDashBoard', mainDashBoardRouter);
 
 // 일정 API 라우터
 app.use('/api/Schedules', scheduleRouter);

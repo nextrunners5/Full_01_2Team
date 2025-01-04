@@ -254,7 +254,7 @@ const ProjectEachDetails: React.FC = () => {
       </div>
       <div className={`mainContent ${isSidebarVisible ? "" : "expanded"}`}>
         <Header onLogoClick={handleLogoClick} />
-        <div className="main">
+        <div className="eachDetailMain">
         {/* 상단 */}
         <div className="eachDetailsTop">
           <div className="eachProjectTitleContainer">
@@ -379,6 +379,7 @@ const ProjectEachDetails: React.FC = () => {
             </div>
             {formVisible && (
                 <form onSubmit={handleSubmit} className="registerList">
+                  <div className="registerListForm">
                   <div className="workListTitle">
                     <input
                       className="workListTitle"
@@ -427,6 +428,7 @@ const ProjectEachDetails: React.FC = () => {
                     </div>
                   <div className="addBtn">
                     <button type='submit'><LuPlus className="plusIcon"/></button>
+                  </div>
                   </div>
                 </form>
             )}

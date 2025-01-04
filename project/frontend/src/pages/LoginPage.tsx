@@ -38,7 +38,7 @@ const LoginPage = () => {
       if (response.token) {
         localStorage.setItem("token", response.token);
         alert(response.message || "로그인 성공!");
-        navigate("/SchedulePage");
+        navigate("/MainDashBoard");
       } else {
         throw new Error("토큰이 반환되지 않았습니다.");
       }

@@ -2,7 +2,7 @@
 import { config } from 'dotenv';
 config();  // 환경 변수 로드
 import { Request, Response, Router } from "express";
-import { createPool, RowDataPacket } from "mysql2";
+import { RowDataPacket } from "mysql2";
 import pool from "./dbConfig.js"
 import { authenticateToken } from './middleware/authMiddleware.js';
 

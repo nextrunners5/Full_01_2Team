@@ -8,8 +8,8 @@ const Sidebar: React.FC = () => {
   return (
     <div className="sidebar">
       <ul>
-        <li className={location.pathname === "/MainHome" ? "active" : ""}>
-          <Link to="/MainHome">
+        <li className={location.pathname === "/MainDashBoard" ? "active" : ""}>
+          <Link to="/MainDashBoard">
             <FaHome /> 메인
           </Link>
         </li>
@@ -18,7 +18,7 @@ const Sidebar: React.FC = () => {
             <FaCalendarAlt /> 일정
           </Link>
         </li>
-        <li className={location.pathname === "/ProjectPage" ? "active" : ""}>
+        <li className={location.pathname === "/ProjectDashBoard" ? "active" : ""}>
           <Link to="/ProjectDashBoard">
             <FaTasks /> 프로젝트
           </Link>
