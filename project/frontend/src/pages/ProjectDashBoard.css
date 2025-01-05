@@ -419,12 +419,12 @@ body {
   align-content: center;
   border-radius: 6px;
   opacity: 1;
-  background: #6F42C1;
+  background: #9c88ff;
   transition: all 0.5s ease;
 }
 
 .purpleBtn:hover{
-  background-color: #8661ca;
+  background-color: #6c5ce7;
 }
 
 .purpleBtn h3{

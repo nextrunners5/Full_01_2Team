@@ -32,7 +32,7 @@
 
 /* +버튼 스타일 */
 .styled-button {
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -43,7 +43,7 @@
 }
 
 .styled-button:hover {
-  background-color: #7a6eb2;
+  background-color: #9c88ff;
 }
 
 /* 카드 컨테이너 */

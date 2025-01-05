@@ -23,64 +23,64 @@
 }
 /* 전체 bar 색상 */
 .fc-event.fc-event-start.fc-event-end.fc-event-future.fc-daygrid-event.fc-daygrid-block-event.fc-h-event{
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
   border: none;
 }
 
 /* 왼쪽, 오른쪽 버튼 */
 .fc-prev-button.fc-button.fc-button-primary{
   border: none;
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
 }
 .fc-next-button.fc-button.fc-button-primary{
   border: none;
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
 }
 /* 왼쪽,오른쪽 호버 버튼 */
 .fc-prev-button.fc-button.fc-button-primary:hover{
   border: none;
-  background-color: #6e42c169;
+  background-color: #9c88ff;
 }
 .fc-next-button.fc-button.fc-button-primary:hover{
   border: none;
-  background-color: #6e42c169;
+  background-color: #9c88ff;
 }
 /* 오늘 버튼 */
 .fc-today-button.fc-button.fc-button-primary{
   border: none;
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
 }
 /* 월, 주, 일 버튼 */
 .fc-dayGridMonth-button.fc-button.fc-button-primary{
   border: none;
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
 }
 .fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active{
   border: none;
-  background-color: #6e42c169;
+  background-color: #9c88ff;
 }
 .fc-timeGridWeek-button.fc-button.fc-button-primary{
   border: none;
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
 }
 .fc-timeGridWeek-button.fc-button.fc-button-primary.fc-button-active{
   border: none;
-  background-color: #6e42c169;
+  background-color: #9c88ff;
 }
 .fc-timeGridDay-button.fc-button.fc-button-primary{
   border: none;
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
 }
 .fc-timeGridDay-button.fc-button.fc-button-primary.fc-button-active{
   border: none;
-  background-color: #6e42c169;
+  background-color: #9c88ff;
 }
 .fc-event.fc-event-start.fc-event-end.fc-event-past.fc-daygrid-event.fc-daygrid-block-event.fc-h-event{
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
   border: none;
 }
 .fc-event.fc-event-past.fc-daygrid-event.fc-daygrid-block-event.fc-h-event{
-  background-color: #6F42C1;
+  background-color: #6c5ce7;
   border: none;
 }
 .fc-event-title-container{

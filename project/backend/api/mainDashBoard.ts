@@ -104,4 +104,34 @@ router.get('/ProjectData', authenticateToken, async(req: Request, res: Response)
   console.log('프로젝트 가져오기 성공');
 });
 
+// 이번 달 일정 조회
+router.get(
+  "/Monthly",
+  authenticateToken,
+  (req: AuthenticatedRequest, res: Response) => {
+    const { user_id } = req.user!;
+
+    const query = `
+    SELECT 
+      schedule_id AS id,
+      schedule_title AS title,
+      DATE_FORMAT(schedule_startDate, '%y.%m.%d') AS startDate,
+      DATE_FORMAT(schedule_endDate, '%y.%m.%d') AS endDate
+    FROM Schedules
+    WHERE user_id = ? 
+    AND MONTH(schedule_startDate) = MONTH(CURDATE()) 
+    AND YEAR(schedule_startDate) = YEAR(CURDATE())
+    ORDER BY schedule_startDate ASC;
+  `;
+
+    pool.query<RowDataPacket[]>(query, [user_id], (error, results) => {
+      if (error) {
+        console.error("이번 달 일정 조회 오류:", error);
+        return res.status(500).json({ success: false, message: "서버 오류" });
+      }
+      res.status(200).json({ success: true, data: results });
+    });
+  }
+);
+
 export default router;
