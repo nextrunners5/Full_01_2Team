@@ -9,7 +9,7 @@ const router = Router();
 
 
 //Common 테이블에서 프로젝트 상태 값 가져오기
-router.get('/api/tasks/Status', (req: Request, res: Response ) => {
+router.get('/Status', (req: Request, res: Response ) => {
   const query = "select common_detail from Common where common_id IN (1,2,3)";
 
   pool.query(query, (err, result) => {
@@ -23,7 +23,7 @@ router.get('/api/tasks/Status', (req: Request, res: Response ) => {
 });
 
 //데이터베이스에 저장된 프로젝트 데이터 가져오기(제목, 중요도, 상태, 시작일, 종료일, 설명)
-router.get('/api/tasks/ProjectEachDetails/:projectId', (req: Request, res: Response) => {
+router.get('/ProjectData/:projectId', (req: Request, res: Response) => {
   const projectId = req.params.projectId;
   // const userId = 'user123';
   const query = "select project_id, project_title, project_details, project_status, project_rank, project_startDate, project_endDate from Project where project_id = ?";
@@ -67,7 +67,7 @@ router.get('/api/tasks/ProjectEachDetails/:projectId', (req: Request, res: Respo
 
 
 //각 프로젝트 별 세부 작업 추가 API
-router.post('/api/tasks', async (req: Request, res: Response) => {
+router.post('/taskAdd', async (req: Request, res: Response) => {
   // const projectId = req.params.projectId;
   console.log(req.body);
   const {task_name, task_manager, task_startDate, task_endDate, task_status, project_id} = req.body;
@@ -134,7 +134,7 @@ router.post('/api/tasks', async (req: Request, res: Response) => {
 });
 
 //프로젝트 세부일정 추가 시 화면에 띄우기
-router.get('/api/tasks/:projectId', (req: Request, res: Response) => {
+router.get('/:projectId', (req: Request, res: Response) => {
   const projectId = req.params.projectId;
   const query = `select task_id, task_name, task_startDate, task_endDate, task_manager, task_status 
                   from Project_taskList 
@@ -171,7 +171,7 @@ router.get('/api/tasks/:projectId', (req: Request, res: Response) => {
 });
 
 //세부 일정 삭제
-router.delete('/api/tasks/:taskId', (req: Request, res: Response) => {
+router.delete('/:taskId', (req: Request, res: Response) => {
   const {taskId} = req.params; 
   console.log(`삭제 요청 taskId: ${taskId}`);
   const query = 'delete from Project_taskList where task_id = ?';
@@ -187,7 +187,7 @@ router.delete('/api/tasks/:taskId', (req: Request, res: Response) => {
 });
 
 // 세부 일정 수정
-router.put('/api/tasks/:taskId', async(req: Request, res: Response) => {
+router.put('/:taskId', async(req: Request, res: Response) => {
   console.log("수정 요청 값 :", req.body);
   const {task_id, task_name, task_startDate, task_endDate, task_manager, task_status} = req.body;
   // const {taskId} = req.params; 
@@ -225,7 +225,7 @@ router.put('/api/tasks/:taskId', async(req: Request, res: Response) => {
 });
 
 //필터링 검색
-router.get('/api/tasks/filter/:projectId/:value', async(req: Request, res: Response) => {
+router.get('/filter/:projectId/:value', async(req: Request, res: Response) => {
   const common_id = req.params.value;
   const project_id = req.params.projectId;
   console.log("검색 body:", common_id);
