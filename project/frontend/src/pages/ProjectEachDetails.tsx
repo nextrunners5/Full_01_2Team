@@ -11,6 +11,7 @@ import { MdDelete } from "react-icons/md";
 import "./ProjectEachDetails.css";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Headar";
+import axiosInstance from "./axios/ProjectAxios";
 
 interface Common{
   common_id: number;
@@ -73,7 +74,7 @@ const ProjectEachDetails: React.FC = () => {
   useEffect(() => {
     const fetchTaskList = async () => {
       try{
-        const response = await axios.get<TaskItem[]>(`http://localhost:3400/api/tasks/${projectId}`);
+        const response = await axiosInstance.get<TaskItem[]>(`/api/tasks/${projectId}`);
         setTaskList(response.data);
       } catch (err) {
         console.error('세부 일정을 가져오는 데 실패했습니다.', err);
@@ -89,7 +90,7 @@ const ProjectEachDetails: React.FC = () => {
   useEffect(() => {
     const fetchStatus = async () => {
       try{
-        const response = await axios.get<Common[]>('http://localhost:3400/api/tasks/Status');
+        const response = await axiosInstance.get<Common[]>('/api/tasks/Status');
         setStatus(response.data);
         console.log(response.data);
       } catch(err) {
@@ -105,7 +106,7 @@ const ProjectEachDetails: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Project[]>(`http://localhost:3400/api/tasks/ProjectEachDetails/${projectId}`);
+        const response = await axiosInstance.get<Project[]>(`/api/tasks/ProjectEachDetails/${projectId}`);
         if(response.data.length > 0){
           setDetails(response.data[0]);
         } else {
@@ -123,10 +124,10 @@ const ProjectEachDetails: React.FC = () => {
     e.preventDefault();
 
     try{
-      const response = await axios.post('http://localhost:3400/api/tasks', {...workItem, project_id: projectId});
+      const response = await axiosInstance.post('/api/tasks', {...workItem, project_id: projectId});
       console.log('작업 추가 성공: ', response.data);
       
-      const newResponse = await axios.get(`http://localhost:3400/api/tasks/${projectId}`);
+      const newResponse = await axiosInstance.get(`/api/tasks/${projectId}`);
       console.log('작업 리스트: ',newResponse.data);
       alert('작업이 추가되었습니다.');
 
@@ -173,7 +174,7 @@ const ProjectEachDetails: React.FC = () => {
       [name] : value,
     }));
     try{
-      const response = await axios.get(`http://localhost:3400/api/tasks/filter/${projectId}/${value}`);
+      const response = await axiosInstance.get(`/api/tasks/filter/${projectId}/${value}`);
       console.log("response.data:",response.data);
       console.log('작업 리스트: ',response.data);
       setTaskList(response.data);
@@ -210,10 +211,10 @@ const ProjectEachDetails: React.FC = () => {
   const handleUpdateTask = async(taskId: number): Promise<void> => {
 
     try{
-      const response = await axios.put(`http://localhost:3400/api/tasks/${taskId}`, editedTask);
+      const response = await axiosInstance.put(`/api/tasks/${taskId}`, editedTask);
       setTaskList((prev) => prev.map((task) => (task.task_id === taskId ? response.data :  task)));
 
-      const newResponse = await axios.get(`http://localhost:3400/api/tasks/${projectId}`);
+      const newResponse = await axiosInstance.get(`/api/tasks/${projectId}`);
       console.log('작업 리스트: ',newResponse.data);
       setTaskList(newResponse.data);
 
@@ -231,7 +232,7 @@ const ProjectEachDetails: React.FC = () => {
     if(!confirmDelete) return;
 
     try{
-      await axios.delete(`http://localhost:3400/api/tasks/${taskId}`);
+      await axiosInstance.delete(`/api/tasks/${taskId}`);
       setTaskList((prev) => prev.filter(task => task.task_id !== taskId));
 
       alert('작업이 삭제되었습니다.');
