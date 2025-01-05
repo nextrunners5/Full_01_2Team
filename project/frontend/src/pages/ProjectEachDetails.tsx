@@ -213,7 +213,7 @@ const ProjectEachDetails: React.FC = () => {
       const response = await axiosInstance.put(`/api/ProjectEachDetails/${taskId}`, editedTask);
       setTaskList((prev) => prev.map((task) => (task.task_id === taskId ? response.data :  task)));
 
-      const newResponse = await axiosInstance.get(`/api/tasks/${projectId}`);
+      const newResponse = await axiosInstance.get(`/api/ProjectEachDetails/${projectId}`);
       console.log('작업 리스트: ',newResponse.data);
       setTaskList(newResponse.data);
 
