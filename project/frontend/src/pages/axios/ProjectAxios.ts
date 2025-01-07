@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // API 기본 URL 설정
-const API_BASE_URL = "http://localhost:3000";
+// const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "http://3.39.228.210:3000";
 
 // Axios 인스턴스 생성
 const axiosInstance = axios.create({

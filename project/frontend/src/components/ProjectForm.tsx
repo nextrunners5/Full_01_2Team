@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../pages/ProjectCreate.css'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../pages/axios/ProjectAxios';
 
 interface Common{
   common_id: number;
@@ -70,7 +70,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({project = {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const response = await axios.get<Common[]>('http://localhost:3000/api/ProjectService/commonStatus');
+        const response = await axiosInstance.get<Common[]>('/api/ProjectService/commonStatus');
         setStatus(response.data);
       } catch (err){
         console.error('상태 데이터를 불러오는 데 실패했습니다.',err);
@@ -79,7 +79,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({project = {
     
     const fetchType = async () => {
       try {
-        const response = await axios.get<Common[]>('http://localhost:3000/api/ProjectService/commonType');
+        const response = await axiosInstance.get<Common[]>('/api/ProjectService/commonType');
         setType(response.data);
       } catch (err){
         console.error('타입 데이터를 불러오는 데 실패했습니다.',err);

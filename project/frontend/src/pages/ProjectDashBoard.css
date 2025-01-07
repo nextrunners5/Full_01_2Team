@@ -6,6 +6,7 @@ body {
 
 .projectDashBoardContainer {
   display: flex;
+  height: 100vh;
   /* gap: 40px; */
 }
 

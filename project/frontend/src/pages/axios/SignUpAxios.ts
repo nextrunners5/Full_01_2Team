@@ -2,7 +2,8 @@ import axios from 'axios';
 
 // Axios 인스턴스 설정
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api/User', // API 서버 베이스 URL
+  // baseURL: 'http://localhost:3000/api/User', // API 서버 베이스 URL
+  baseURL: `http://3.39.228.210:3000/api/User`,
   headers: {
     'Content-Type': 'application/json',
   },
