@@ -16,7 +16,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 미들웨어 설정
-app.use(cors());
+app.use(cors({
+  // origin: ['https://oz-project-2team.kro.kr', 'http://localhost:5175'],
+  origin: "*",
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],  // 허용할 메서드
+  allowedHeaders: ['Content-Type', 'Authorization']  // 허용할 헤더
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
