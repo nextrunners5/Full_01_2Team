@@ -1,4 +1,4 @@
-# Full_01_2Team
+# FullStack 1Team
  
 # **Branch Strategy**
 
